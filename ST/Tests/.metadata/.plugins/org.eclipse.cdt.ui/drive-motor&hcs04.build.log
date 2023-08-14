@@ -1,0 +1,9 @@
+16:04:30 **** Incremental Build of configuration Debug for project drive-motor&hcs04 ****
+make -j8 all 
+arm-none-eabi-size   drive-motor&hcs04.elf 
+c:/st/stm32cubeide_1.12.1/stm32cubeide/plugins/com.st.stm32cube.ide.mcu.externaltools.make.win32_2.0.200.202301161003/tools/bin/sh: hcs04.elf: not found
+make: *** [makefile:69: default.size.stdout] Error 127
+"make -j8 all" terminated with exit code 2. Build might be incomplete.
+
+16:04:30 Build Failed. 1 errors, 0 warnings. (took 366ms)
+
