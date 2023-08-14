@@ -1,0 +1,5 @@
+motor.c:10:6:motor_frente	1
+motor.c:18:6:motor_right	1
+motor.c:26:6:motor_left	1
+motor.c:34:6:motor_re	1
+motor.c:41:6:motor_parado	1
