@@ -34,34 +34,34 @@ $(wildcard ../makefile.init) \
 $(wildcard ../makefile.targets) \
 
 
-BUILD_ARTIFACT_NAME := dcmotor-teste-f411
+BUILD_ARTIFACT_NAME := drive-motor-hcsr04
 BUILD_ARTIFACT_EXTENSION := elf
 BUILD_ARTIFACT_PREFIX :=
 BUILD_ARTIFACT := $(BUILD_ARTIFACT_PREFIX)$(BUILD_ARTIFACT_NAME)$(if $(BUILD_ARTIFACT_EXTENSION),.$(BUILD_ARTIFACT_EXTENSION),)
 
 # Add inputs and outputs from these tool invocations to the build variables 
 EXECUTABLES += \
-dcmotor-teste-f411.elf \
+drive-motor-hcsr04.elf \
 
 MAP_FILES += \
-dcmotor-teste-f411.map \
+drive-motor-hcsr04.map \
 
 SIZE_OUTPUT += \
 default.size.stdout \
 
 OBJDUMP_LIST += \
-dcmotor-teste-f411.list \
+drive-motor-hcsr04.list \
 
 
 # All Target
 all: main-build
 
 # Main-build Target
-main-build: dcmotor-teste-f411.elf secondary-outputs
+main-build: drive-motor-hcsr04.elf secondary-outputs
 
 # Tool invocations
-dcmotor-teste-f411.elf dcmotor-teste-f411.map: $(OBJS) $(USER_OBJS) C:\UFU\Github-Rep\TCC-PA-Robot\ST\Tests\drive-motor-hcsr04\STM32F411CEUX_FLASH.ld makefile objects.list $(OPTIONAL_TOOL_DEPS)
-	arm-none-eabi-gcc -o "dcmotor-teste-f411.elf" @"objects.list" $(USER_OBJS) $(LIBS) -mcpu=cortex-m4 -T"C:\UFU\Github-Rep\TCC-PA-Robot\ST\Tests\drive-motor-hcsr04\STM32F411CEUX_FLASH.ld" --specs=nosys.specs -Wl,-Map="dcmotor-teste-f411.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+drive-motor-hcsr04.elf drive-motor-hcsr04.map: $(OBJS) $(USER_OBJS) E:\UFU\TCC\Github\ Rep\TCC-PA-Robot\ST\Tests\drive-motor-hcsr04\STM32F411CEUX_FLASH.ld makefile objects.list $(OPTIONAL_TOOL_DEPS)
+	arm-none-eabi-gcc -o "drive-motor-hcsr04.elf" @"objects.list" $(USER_OBJS) $(LIBS) -mcpu=cortex-m4 -T"E:\UFU\TCC\Github Rep\TCC-PA-Robot\ST\Tests\drive-motor-hcsr04\STM32F411CEUX_FLASH.ld" --specs=nosys.specs -Wl,-Map="drive-motor-hcsr04.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
 	@echo 'Finished building target: $@'
 	@echo ' '
 
@@ -70,14 +70,14 @@ default.size.stdout: $(EXECUTABLES) makefile objects.list $(OPTIONAL_TOOL_DEPS)
 	@echo 'Finished building: $@'
 	@echo ' '
 
-dcmotor-teste-f411.list: $(EXECUTABLES) makefile objects.list $(OPTIONAL_TOOL_DEPS)
-	arm-none-eabi-objdump -h -S $(EXECUTABLES) > "dcmotor-teste-f411.list"
+drive-motor-hcsr04.list: $(EXECUTABLES) makefile objects.list $(OPTIONAL_TOOL_DEPS)
+	arm-none-eabi-objdump -h -S $(EXECUTABLES) > "drive-motor-hcsr04.list"
 	@echo 'Finished building: $@'
 	@echo ' '
 
 # Other Targets
 clean:
-	-$(RM) dcmotor-teste-f411.elf dcmotor-teste-f411.list dcmotor-teste-f411.map default.size.stdout
+	-$(RM) default.size.stdout drive-motor-hcsr04.elf drive-motor-hcsr04.list drive-motor-hcsr04.map
 	-@echo ' '
 
 secondary-outputs: $(SIZE_OUTPUT) $(OBJDUMP_LIST)

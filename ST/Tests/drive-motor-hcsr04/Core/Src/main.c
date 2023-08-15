@@ -119,14 +119,9 @@ int main(void)
   while (1)
   {
 
-//	HAL_ADC_PollForConversion(&hadc1, 1000);
-//	valor = HAL_ADC_GetValue(&hadc1);
-//	motor_value = (valor - 0) * (49 - 0) / (4095);
-
 	Read_HCSR04();
 	HAL_Delay(100);
 
-//	motor_parado();
 //	HAL_Delay(3000);
 //
 //	motor_frente();
@@ -148,8 +143,7 @@ int main(void)
 //	HAL_Delay(3000);
 //	motor_right();
 //	HAL_Delay(1500);
-	//TIM2->CCR1=motor_value;
-//	HAL_Delay(10);
+
 
     /* USER CODE END WHILE */
 

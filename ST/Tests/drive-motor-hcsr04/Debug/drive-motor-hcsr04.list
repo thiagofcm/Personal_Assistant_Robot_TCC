@@ -39,13 +39,13 @@ Idx Name          Size      VMA       LMA       File off  Algn
                   CONTENTS, READONLY, DEBUGGING, OCTETS
  17 .debug_macro  00017657  00000000  00000000  0002df0e  2**0
                   CONTENTS, READONLY, DEBUGGING, OCTETS
- 18 .debug_line   0000c7bf  00000000  00000000  00045565  2**0
+ 18 .debug_line   0000c7fb  00000000  00000000  00045565  2**0
                   CONTENTS, READONLY, DEBUGGING, OCTETS
- 19 .debug_str    00096db3  00000000  00000000  00051d24  2**0
+ 19 .debug_str    00096d9b  00000000  00000000  00051d60  2**0
                   CONTENTS, READONLY, DEBUGGING, OCTETS
- 20 .debug_frame  00002d74  00000000  00000000  000e8ad8  2**2
+ 20 .debug_frame  00002d74  00000000  00000000  000e8afc  2**2
                   CONTENTS, READONLY, DEBUGGING, OCTETS
- 21 .debug_line_str 0000006d  00000000  00000000  000eb84c  2**0
+ 21 .debug_line_str 0000006d  00000000  00000000  000eb870  2**0
                   CONTENTS, READONLY, DEBUGGING, OCTETS
 
 Disassembly of section .text:
@@ -467,10 +467,10 @@ int main(void)
  8000570:	2100      	movs	r1, #0
  8000572:	4805      	ldr	r0, [pc, #20]	; (8000588 <main+0x40>)
  8000574:	f001 ffae 	bl	80024d4 <HAL_TIM_PWM_Start>
-
-//	HAL_ADC_PollForConversion(&hadc1, 1000);
-//	valor = HAL_ADC_GetValue(&hadc1);
-//	motor_value = (valor - 0) * (49 - 0) / (4095);
+  /* Infinite loop */
+  /* USER CODE BEGIN WHILE */
+  while (1)
+  {
 
 	Read_HCSR04();
  8000578:	f7ff ffc6 	bl	8000508 <Read_HCSR04>
