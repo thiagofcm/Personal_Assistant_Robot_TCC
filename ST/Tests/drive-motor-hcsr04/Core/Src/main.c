@@ -55,7 +55,7 @@ uint32_t val_1 = 0;
 uint32_t val_2 = 0;
 uint32_t difference = 0;
 uint8_t flag_raise = 0;
-uint16_t distance = 0;
+uint16_t distance = 0; //teste
 /* USER CODE END PV */
 
 /* Private function prototypes -----------------------------------------------*/
