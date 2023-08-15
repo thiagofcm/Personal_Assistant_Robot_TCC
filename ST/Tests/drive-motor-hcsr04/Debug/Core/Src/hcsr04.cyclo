@@ -1,2 +1,2 @@
-hcsr04.c:8:6:Delay_us	2
-hcsr04.c:13:6:Read_HCSR04	1
+../Core/Src/hcsr04.c:8:6:Delay_us	2
+../Core/Src/hcsr04.c:13:6:Read_HCSR04	1
