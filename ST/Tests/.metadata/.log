@@ -5830,3 +5830,25 @@ org.eclipse.core.runtime.CoreException: Setup exceptions
 
 !ENTRY com.st.stm32cube.ide.mcu.debug 4 0 2023-08-15 22:57:25.556
 !MESSAGE Existing sessions are:
+!SESSION 2023-08-16 00:57:07.465 -----------------------------------------------
+eclipse.buildId=Version 1.13.1
+java.version=17.0.6
+java.vendor=Eclipse Adoptium
+BootLoader constants: OS=win32, ARCH=x86_64, WS=win32, NL=pt_BR
+Framework arguments:  C:\UFU\Github-Rep\TCC-PA-Robot\ST\Tests\drive-motor-hcsr04\.project
+Command-line arguments:  -os win32 -ws win32 -arch x86_64 C:\UFU\Github-Rep\TCC-PA-Robot\ST\Tests\drive-motor-hcsr04\.project
+
+!ENTRY com.st.stm32cube.ide.mcu.informationcenter 4 4 2023-08-16 00:57:58.875
+!MESSAGE CubeMX plugin appears to be active, Log4j initialization might be too late.
+
+!ENTRY com.st.stm32cube.ide.mcu.informationcenter 1 1 2023-08-16 00:57:58.916
+!MESSAGE Log4j2 initialized with config file C:\UFU\Github-Rep\TCC-PA-Robot\ST\Tests\.metadata\.log4j2.xml
+
+!ENTRY com.st.stm32cube.ide.mcu.ide 1 1 2023-08-16 00:58:25.447
+!MESSAGE Started RMI Server, listening on port 41337
+
+!ENTRY org.eclipse.core.jobs 2 2 2023-08-16 00:59:46.061
+!MESSAGE Job found still running after platform shutdown.  Jobs should be canceled by the plugin that scheduled them during shutdown: org.eclipse.equinox.internal.p2.transport.ecf.FileInfoReader
+
+!ENTRY org.eclipse.core.jobs 2 2 2023-08-16 00:59:46.064
+!MESSAGE Job found still running after platform shutdown.  Jobs should be canceled by the plugin that scheduled them during shutdown: org.eclipse.ecf.provider.filetransfer.browse.AbstractFileSystemBrowser$DirectoryJob
