@@ -10,6 +10,10 @@ void Delay_us (uint16_t time){
   	while (__HAL_TIM_GET_COUNTER(&htim1) < time);
 }
 
+//uint16_t getDistance(){
+//	return distance;
+//}
+
 void Read_HCSR04(void){
   	HAL_GPIO_WritePin(GPIOA, GPIO_PIN_9, 1);
   	Delay_us(10);

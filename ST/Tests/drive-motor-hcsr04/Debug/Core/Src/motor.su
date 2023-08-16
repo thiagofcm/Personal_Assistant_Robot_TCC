@@ -3,3 +3,4 @@
 ../Core/Src/motor.c:26:6:motor_left	8	static
 ../Core/Src/motor.c:34:6:motor_re	8	static
 ../Core/Src/motor.c:41:6:motor_parado	4	static
+../Core/Src/motor.c:46:6:motor_desvia	8	static

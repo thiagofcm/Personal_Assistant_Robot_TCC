@@ -11,4 +11,6 @@ void motor_re(void);
 
 void motor_parado(void);
 
+void motor_desvia(void);
+
 #endif /* MOTOR_H_ */

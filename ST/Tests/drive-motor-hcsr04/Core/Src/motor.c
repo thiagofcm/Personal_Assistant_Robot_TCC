@@ -42,3 +42,10 @@ void motor_parado(void){
 	__HAL_TIM_SET_COMPARE(&htim2,TIM_CHANNEL_2,0);
 	TIM5->CCR1=0;
 }
+
+void motor_desvia(void){
+  	motor_re();
+  	HAL_Delay(1500);
+  	motor_left();
+  	HAL_Delay(1500);
+}

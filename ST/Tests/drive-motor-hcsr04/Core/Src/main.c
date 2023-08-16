@@ -121,7 +121,20 @@ int main(void)
   {
 
 	Read_HCSR04();
+	if(distance > 15){
+		HAL_GPIO_WritePin(GPIOB, GPIO_PIN_13, 1); //verde
+	  	HAL_GPIO_WritePin(GPIOB, GPIO_PIN_14, 0); //vermelho
+	  	//motor_frente();
+	 }
+	 else{
+	  	HAL_GPIO_WritePin(GPIOB, GPIO_PIN_13, 0); //verde
+	  	HAL_GPIO_WritePin(GPIOB, GPIO_PIN_14, 1); //vermelho
+	  	//motor_desvia();
+
+	 }
+
 	HAL_Delay(100);
+
 
 //	HAL_Delay(3000);
 //
@@ -472,17 +485,20 @@ void HAL_TIM_IC_CaptureCallback(TIM_HandleTypeDef *htim){
 //  			char message[50];
 //  			sprintf(message, "Distancia: %d cm \r\n",distance);
 //  			HAL_UART_Transmit(&huart1, (uint8_t*)message, strlen(message), HAL_MAX_DELAY);
-  			if(distance > 15){
-  				HAL_GPIO_WritePin(GPIOB, GPIO_PIN_13, 1); //verde
-  				HAL_GPIO_WritePin(GPIOB, GPIO_PIN_14, 0); //vermelho
-  				motor_frente();
-  			}
-  			else{
-  				HAL_GPIO_WritePin(GPIOB, GPIO_PIN_13, 0); //verde
-  				HAL_GPIO_WritePin(GPIOB, GPIO_PIN_14, 1); //vermelho
-  				motor_left();
-  				HAL_Delay(1500);
-  			}
+//  			if(distance > 15){
+//  				HAL_GPIO_WritePin(GPIOB, GPIO_PIN_13, 1); //verde
+//  				HAL_GPIO_WritePin(GPIOB, GPIO_PIN_14, 0); //vermelho
+//  				motor_frente();
+//  			}
+//  			else{
+//  				HAL_GPIO_WritePin(GPIOB, GPIO_PIN_13, 0); //verde
+//  				HAL_GPIO_WritePin(GPIOB, GPIO_PIN_14, 1); //vermelho
+//  				motor_re();
+//  				HAL_Delay(1500);
+//  				motor_left();
+//  				HAL_Delay(1500);
+
+  			//}
 
 
   			flag_raise = 0;
