@@ -11,6 +11,6 @@ void motor_re(void);
 
 void motor_parado(void);
 
-void motor_desvia(void);
+void motor_desvia(uint16_t distancia);
 
 #endif /* MOTOR_H_ */

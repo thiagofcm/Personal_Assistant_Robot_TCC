@@ -3,4 +3,4 @@
 ../Core/Src/motor.c:26:6:motor_left	1
 ../Core/Src/motor.c:34:6:motor_re	1
 ../Core/Src/motor.c:41:6:motor_parado	1
-../Core/Src/motor.c:46:6:motor_desvia	1
+../Core/Src/motor.c:46:6:motor_desvia	2

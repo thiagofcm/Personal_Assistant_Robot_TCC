@@ -43,9 +43,12 @@ void motor_parado(void){
 	TIM5->CCR1=0;
 }
 
-void motor_desvia(void){
-  	motor_re();
-  	HAL_Delay(1500);
-  	motor_left();
-  	HAL_Delay(1500);
+void motor_desvia(uint16_t distancia){
+  	while(distancia < 15){
+  		motor_re();
+  		HAL_Delay(750);
+  		motor_left();
+  		HAL_Delay(1000);
+  		break;
+  	}
 }

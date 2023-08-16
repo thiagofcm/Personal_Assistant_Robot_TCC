@@ -55,7 +55,8 @@ uint32_t val_1 = 0;
 uint32_t val_2 = 0;
 uint32_t difference = 0;
 uint8_t flag_raise = 0;
-uint16_t distance = 0; //teste
+uint16_t distance;
+uint16_t flag_start=0;
 /* USER CODE END PV */
 
 /* Private function prototypes -----------------------------------------------*/
@@ -119,26 +120,30 @@ int main(void)
   /* USER CODE BEGIN WHILE */
   while (1)
   {
+//	  if(flag_start!=1){
+//		  HAL_Delay(3000);
+//		  flag_start=1;
+//	  }
 
-	Read_HCSR04();
-	if(distance > 15){
+	  Read_HCSR04();
+	  if(distance > 15){
 		HAL_GPIO_WritePin(GPIOB, GPIO_PIN_13, 1); //verde
-	  	HAL_GPIO_WritePin(GPIOB, GPIO_PIN_14, 0); //vermelho
-	  	//motor_frente();
-	 }
-	 else{
-	  	HAL_GPIO_WritePin(GPIOB, GPIO_PIN_13, 0); //verde
-	  	HAL_GPIO_WritePin(GPIOB, GPIO_PIN_14, 1); //vermelho
-	  	//motor_desvia();
+		HAL_GPIO_WritePin(GPIOB, GPIO_PIN_14, 0); //vermelho
+		motor_frente();
+	  }
+	  else if(distance <= 15){
+		HAL_GPIO_WritePin(GPIOB, GPIO_PIN_13, 0); //verde
+		HAL_GPIO_WritePin(GPIOB, GPIO_PIN_14, 1); //vermelho
+		motor_desvia(distance);
+	  }
 
-	 }
 
 	HAL_Delay(100);
 
 
 //	HAL_Delay(3000);
 //
-//	motor_frente();
+//	motor_right();
 //	HAL_Delay(3000);
 //	motor_right();
 //	HAL_Delay(1500);
