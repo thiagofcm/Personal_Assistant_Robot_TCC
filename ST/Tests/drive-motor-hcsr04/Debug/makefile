@@ -60,8 +60,8 @@ all: main-build
 main-build: drive-motor-hcsr04.elf secondary-outputs
 
 # Tool invocations
-drive-motor-hcsr04.elf drive-motor-hcsr04.map: $(OBJS) $(USER_OBJS) E:\UFU\TCC\Github\ Rep\TCC-PA-Robot\ST\Tests\drive-motor-hcsr04\STM32F411CEUX_FLASH.ld makefile objects.list $(OPTIONAL_TOOL_DEPS)
-	arm-none-eabi-gcc -o "drive-motor-hcsr04.elf" @"objects.list" $(USER_OBJS) $(LIBS) -mcpu=cortex-m4 -T"E:\UFU\TCC\Github Rep\TCC-PA-Robot\ST\Tests\drive-motor-hcsr04\STM32F411CEUX_FLASH.ld" --specs=nosys.specs -Wl,-Map="drive-motor-hcsr04.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+drive-motor-hcsr04.elf drive-motor-hcsr04.map: $(OBJS) $(USER_OBJS) C:\UFU\Github-Rep\TCC-PA-Robot\ST\Tests\drive-motor-hcsr04\STM32F411CEUX_FLASH.ld makefile objects.list $(OPTIONAL_TOOL_DEPS)
+	arm-none-eabi-gcc -o "drive-motor-hcsr04.elf" @"objects.list" $(USER_OBJS) $(LIBS) -mcpu=cortex-m4 -T"C:\UFU\Github-Rep\TCC-PA-Robot\ST\Tests\drive-motor-hcsr04\STM32F411CEUX_FLASH.ld" --specs=nosys.specs -Wl,-Map="drive-motor-hcsr04.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
 	@echo 'Finished building target: $@'
 	@echo ' '
 

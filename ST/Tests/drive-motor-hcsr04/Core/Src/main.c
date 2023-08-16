@@ -109,7 +109,8 @@ int main(void)
   /* USER CODE BEGIN 2 */
   HAL_TIM_PWM_Start(&htim2, TIM_CHANNEL_2);
   HAL_TIM_PWM_Start(&htim5, TIM_CHANNEL_1);
-//  HAL_ADC_Start(&hadc1);
+  HAL_TIM_IC_Start_IT(&htim1, TIM_CHANNEL_1);
+  //  HAL_ADC_Start(&hadc1);
   //TIM2->CCR2=40;
 
   /* USER CODE END 2 */
@@ -269,7 +270,7 @@ static void MX_TIM1_Init(void)
 
   /* USER CODE END TIM1_Init 1 */
   htim1.Instance = TIM1;
-  htim1.Init.Prescaler = 80-1;
+  htim1.Init.Prescaler = 20-1;
   htim1.Init.CounterMode = TIM_COUNTERMODE_UP;
   htim1.Init.Period = 0xffff-1;
   htim1.Init.ClockDivision = TIM_CLOCKDIVISION_DIV1;
@@ -447,6 +448,7 @@ static void MX_GPIO_Init(void)
 }
 
 /* USER CODE BEGIN 4 */
+
 void HAL_TIM_IC_CaptureCallback(TIM_HandleTypeDef *htim){
   	if (htim->Channel == HAL_TIM_ACTIVE_CHANNEL_1){
   		if (flag_raise==0){

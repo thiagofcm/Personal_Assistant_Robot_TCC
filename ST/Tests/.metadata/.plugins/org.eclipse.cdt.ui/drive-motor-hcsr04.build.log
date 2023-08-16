@@ -1,10 +1,10 @@
-20:28:45 **** Incremental Build of configuration Debug for project drive-motor-hcsr04 ****
-make -j12 all 
+22:33:04 **** Incremental Build of configuration Debug for project drive-motor-hcsr04 ****
+make -j8 all 
 arm-none-eabi-size   drive-motor-hcsr04.elf 
    text	   data	    bss	    dec	    hex	filename
-  14184	     20	   1876	  16080	   3ed0	drive-motor-hcsr04.elf
+  14652	     20	   1876	  16548	   40a4	drive-motor-hcsr04.elf
 Finished building: default.size.stdout
  
 
-20:28:45 Build Finished. 0 errors, 0 warnings. (took 250ms)
+22:33:04 Build Finished. 0 errors, 0 warnings. (took 331ms)
 

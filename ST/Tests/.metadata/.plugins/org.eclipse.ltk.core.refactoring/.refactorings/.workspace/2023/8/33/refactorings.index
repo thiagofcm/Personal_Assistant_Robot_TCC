@@ -1,2 +1,6 @@
 1692040143533	Delete resource 'drive-motor&hcs04'
 1692139652265	Delete resource 'drive-motor-hcsr04'
+1692142712065	Delete resource 'drive-motor-hcsr04/Debug/dcmotor-teste-f411.elf'
+1692142717921	Delete resource 'drive-motor-hcsr04/Debug/drive-motor&hcs04.elf'
+1692146136822	Delete resource 'drive-motor-hcsr04'
+1692147058687	Delete resource 'drive-motor-hcsr04/dcmotor-teste-f411 Debug.launch'

@@ -1,7 +1,7 @@
 Core/Src/main.o: ../Core/Src/main.c \
- E:/UFU/TCC/Github\ Rep/TCC-PA-Robot/ST/Tests/drive-motor-hcsr04/Core/Inc/main.h \
+ C:/UFU/Github-Rep/TCC-PA-Robot/ST/Tests/drive-motor-hcsr04/Core/Inc/main.h \
  ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal.h \
- E:/UFU/TCC/Github\ Rep/TCC-PA-Robot/ST/Tests/drive-motor-hcsr04/Core/Inc/stm32f4xx_hal_conf.h \
+ C:/UFU/Github-Rep/TCC-PA-Robot/ST/Tests/drive-motor-hcsr04/Core/Inc/stm32f4xx_hal_conf.h \
  ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_rcc.h \
  ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_def.h \
  ../Drivers/CMSIS/Device/ST/STM32F4xx/Include/stm32f4xx.h \
@@ -30,11 +30,11 @@ Core/Src/main.o: ../Core/Src/main.c \
  ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_pwr_ex.h \
  ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_tim.h \
  ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_tim_ex.h \
- E:/UFU/TCC/Github\ Rep/TCC-PA-Robot/ST/Tests/drive-motor-hcsr04/Core/Inc/motor.h \
- E:/UFU/TCC/Github\ Rep/TCC-PA-Robot/ST/Tests/drive-motor-hcsr04/Core/Inc/hcsr04.h
-E:/UFU/TCC/Github\ Rep/TCC-PA-Robot/ST/Tests/drive-motor-hcsr04/Core/Inc/main.h:
+ C:/UFU/Github-Rep/TCC-PA-Robot/ST/Tests/drive-motor-hcsr04/Core/Inc/motor.h \
+ C:/UFU/Github-Rep/TCC-PA-Robot/ST/Tests/drive-motor-hcsr04/Core/Inc/hcsr04.h
+C:/UFU/Github-Rep/TCC-PA-Robot/ST/Tests/drive-motor-hcsr04/Core/Inc/main.h:
 ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal.h:
-E:/UFU/TCC/Github\ Rep/TCC-PA-Robot/ST/Tests/drive-motor-hcsr04/Core/Inc/stm32f4xx_hal_conf.h:
+C:/UFU/Github-Rep/TCC-PA-Robot/ST/Tests/drive-motor-hcsr04/Core/Inc/stm32f4xx_hal_conf.h:
 ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_rcc.h:
 ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_def.h:
 ../Drivers/CMSIS/Device/ST/STM32F4xx/Include/stm32f4xx.h:
@@ -63,5 +63,5 @@ E:/UFU/TCC/Github\ Rep/TCC-PA-Robot/ST/Tests/drive-motor-hcsr04/Core/Inc/stm32f4
 ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_pwr_ex.h:
 ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_tim.h:
 ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_tim_ex.h:
-E:/UFU/TCC/Github\ Rep/TCC-PA-Robot/ST/Tests/drive-motor-hcsr04/Core/Inc/motor.h:
-E:/UFU/TCC/Github\ Rep/TCC-PA-Robot/ST/Tests/drive-motor-hcsr04/Core/Inc/hcsr04.h:
+C:/UFU/Github-Rep/TCC-PA-Robot/ST/Tests/drive-motor-hcsr04/Core/Inc/motor.h:
+C:/UFU/Github-Rep/TCC-PA-Robot/ST/Tests/drive-motor-hcsr04/Core/Inc/hcsr04.h:

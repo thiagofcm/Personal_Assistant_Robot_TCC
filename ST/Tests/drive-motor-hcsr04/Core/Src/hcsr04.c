@@ -1,8 +1,8 @@
 #include "main.h"
 #include "stdio.h"
 #include "stm32f4xx_it.h"
+#include "stm32f4xx_hal_tim.h"
 #include "hcsr04.h"
-
 extern TIM_HandleTypeDef htim1;
 
 void Delay_us (uint16_t time){
