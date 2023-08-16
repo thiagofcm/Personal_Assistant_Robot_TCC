@@ -48,7 +48,7 @@ void motor_desvia(uint16_t distancia){
   		motor_re();
   		HAL_Delay(750);
   		motor_left();
-  		HAL_Delay(1001);
+  		HAL_Delay(1000);
   		break;
   	}
 }
