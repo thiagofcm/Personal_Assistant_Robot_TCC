@@ -33,7 +33,8 @@
 
 /* Private define ------------------------------------------------------------*/
 /* USER CODE BEGIN PD */
-
+#define GREEN_LED GPIO_PIN_13
+#define RED_LED GPIO_PIN_14
 /* USER CODE END PD */
 
 /* Private macro -------------------------------------------------------------*/
@@ -49,8 +50,6 @@ TIM_HandleTypeDef htim5;
 UART_HandleTypeDef huart1;
 
 /* USER CODE BEGIN PV */
-uint16_t valor;
-uint16_t motor_value;
 uint32_t val_1 = 0;
 uint32_t val_2 = 0;
 uint32_t difference = 0;
@@ -123,17 +122,18 @@ int main(void)
 //	  HAL_GPIO_WritePin(GPIOB, GPIO_PIN_13, 1); //verde
 //	  HAL_GPIO_WritePin(GPIOB, GPIO_PIN_14, 1); //vermelho
 
-	  Read_HCSR04();
-	  if(distance > 15){
-		HAL_GPIO_WritePin(GPIOB, GPIO_PIN_13, 1); //verde
-		HAL_GPIO_WritePin(GPIOB, GPIO_PIN_14, 0); //vermelho
-		motor_frente();
-	  }
-	  else if(distance <= 15){
-		HAL_GPIO_WritePin(GPIOB, GPIO_PIN_13, 0); //verde
-		HAL_GPIO_WritePin(GPIOB, GPIO_PIN_14, 1); //vermelho
-		motor_desvia(distance);
-	  }
+	  motor_right();
+//	  Read_HCSR04();
+//	  if(distance > 15){
+//		HAL_GPIO_WritePin(GPIOB, GREEN_LED, 1); //verde
+//		HAL_GPIO_WritePin(GPIOB, RED_LED, 0); //vermelho
+//		motor_frente();
+//	  }
+//	  else if(distance <= 15){
+//		HAL_GPIO_WritePin(GPIOB, GREEN_LED, 0); //verde
+//		HAL_GPIO_WritePin(GPIOB, RED_LED, 1); //vermelho
+//		motor_desvia(distance);
+//	  }
 
 
 	HAL_Delay(100);
