@@ -42,8 +42,6 @@
 /* USER CODE END PM */
 
 /* Private variables ---------------------------------------------------------*/
-ADC_HandleTypeDef hadc1;
-
 TIM_HandleTypeDef htim1;
 TIM_HandleTypeDef htim2;
 TIM_HandleTypeDef htim5;
@@ -64,7 +62,6 @@ uint16_t flag_start=0;
 /* Private function prototypes -----------------------------------------------*/
 void SystemClock_Config(void);
 static void MX_GPIO_Init(void);
-static void MX_ADC1_Init(void);
 static void MX_TIM2_Init(void);
 static void MX_TIM5_Init(void);
 static void MX_TIM1_Init(void);
@@ -106,7 +103,6 @@ int main(void)
 
   /* Initialize all configured peripherals */
   MX_GPIO_Init();
-  MX_ADC1_Init();
   MX_TIM2_Init();
   MX_TIM5_Init();
   MX_TIM1_Init();
@@ -124,49 +120,23 @@ int main(void)
   /* USER CODE BEGIN WHILE */
   while (1)
   {
-//	  if(flag_start!=1){
-//		  HAL_Delay(3000);
-//		  flag_start=1;
-//	  }
+//	  HAL_GPIO_WritePin(GPIOB, GPIO_PIN_13, 1); //verde
+//	  HAL_GPIO_WritePin(GPIOB, GPIO_PIN_14, 1); //vermelho
 
 	  Read_HCSR04();
 	  if(distance > 15){
 		HAL_GPIO_WritePin(GPIOB, GPIO_PIN_13, 1); //verde
 		HAL_GPIO_WritePin(GPIOB, GPIO_PIN_14, 0); //vermelho
-		//motor_frente();
+		motor_frente();
 	  }
 	  else if(distance <= 15){
 		HAL_GPIO_WritePin(GPIOB, GPIO_PIN_13, 0); //verde
 		HAL_GPIO_WritePin(GPIOB, GPIO_PIN_14, 1); //vermelho
-		//motor_desvia(distance);
+		motor_desvia(distance);
 	  }
 
 
 	HAL_Delay(100);
-
-
-//	HAL_Delay(3000);
-//
-//	motor_right();
-//	HAL_Delay(3000);
-//	motor_right();
-//	HAL_Delay(1500);
-//
-//	motor_frente();
-//	HAL_Delay(3000);
-//	motor_right();
-//	HAL_Delay(1500);
-//
-//	motor_frente();
-//	HAL_Delay(3000);
-//	motor_right();
-//	HAL_Delay(1500);
-//
-//	motor_frente();
-//	HAL_Delay(3000);
-//	motor_right();
-//	HAL_Delay(1500);
-
 
     /* USER CODE END WHILE */
 
@@ -219,58 +189,6 @@ void SystemClock_Config(void)
   {
     Error_Handler();
   }
-}
-
-/**
-  * @brief ADC1 Initialization Function
-  * @param None
-  * @retval None
-  */
-static void MX_ADC1_Init(void)
-{
-
-  /* USER CODE BEGIN ADC1_Init 0 */
-
-  /* USER CODE END ADC1_Init 0 */
-
-  ADC_ChannelConfTypeDef sConfig = {0};
-
-  /* USER CODE BEGIN ADC1_Init 1 */
-
-  /* USER CODE END ADC1_Init 1 */
-
-  /** Configure the global features of the ADC (Clock, Resolution, Data Alignment and number of conversion)
-  */
-  hadc1.Instance = ADC1;
-  hadc1.Init.ClockPrescaler = ADC_CLOCK_SYNC_PCLK_DIV2;
-  hadc1.Init.Resolution = ADC_RESOLUTION_12B;
-  hadc1.Init.ScanConvMode = DISABLE;
-  hadc1.Init.ContinuousConvMode = ENABLE;
-  hadc1.Init.DiscontinuousConvMode = DISABLE;
-  hadc1.Init.ExternalTrigConvEdge = ADC_EXTERNALTRIGCONVEDGE_NONE;
-  hadc1.Init.ExternalTrigConv = ADC_SOFTWARE_START;
-  hadc1.Init.DataAlign = ADC_DATAALIGN_RIGHT;
-  hadc1.Init.NbrOfConversion = 1;
-  hadc1.Init.DMAContinuousRequests = DISABLE;
-  hadc1.Init.EOCSelection = ADC_EOC_SINGLE_CONV;
-  if (HAL_ADC_Init(&hadc1) != HAL_OK)
-  {
-    Error_Handler();
-  }
-
-  /** Configure for the selected ADC regular channel its corresponding rank in the sequencer and its sample time.
-  */
-  sConfig.Channel = ADC_CHANNEL_9;
-  sConfig.Rank = 1;
-  sConfig.SamplingTime = ADC_SAMPLETIME_3CYCLES;
-  if (HAL_ADC_ConfigChannel(&hadc1, &sConfig) != HAL_OK)
-  {
-    Error_Handler();
-  }
-  /* USER CODE BEGIN ADC1_Init 2 */
-
-  /* USER CODE END ADC1_Init 2 */
-
 }
 
 /**
@@ -482,7 +400,7 @@ static void MX_GPIO_Init(void)
   HAL_GPIO_WritePin(GPIOA, GPIO_PIN_6|GPIO_PIN_7|GPIO_PIN_9, GPIO_PIN_RESET);
 
   /*Configure GPIO pin Output Level */
-  HAL_GPIO_WritePin(GPIOB, GPIO_PIN_13|GPIO_PIN_14, GPIO_PIN_RESET);
+  HAL_GPIO_WritePin(GPIOB, GPIO_PIN_0|GPIO_PIN_1|GPIO_PIN_13|GPIO_PIN_14, GPIO_PIN_RESET);
 
   /*Configure GPIO pins : PA6 PA7 PA9 */
   GPIO_InitStruct.Pin = GPIO_PIN_6|GPIO_PIN_7|GPIO_PIN_9;
@@ -491,8 +409,8 @@ static void MX_GPIO_Init(void)
   GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_LOW;
   HAL_GPIO_Init(GPIOA, &GPIO_InitStruct);
 
-  /*Configure GPIO pins : PB13 PB14 */
-  GPIO_InitStruct.Pin = GPIO_PIN_13|GPIO_PIN_14;
+  /*Configure GPIO pins : PB0 PB1 PB13 PB14 */
+  GPIO_InitStruct.Pin = GPIO_PIN_0|GPIO_PIN_1|GPIO_PIN_13|GPIO_PIN_14;
   GPIO_InitStruct.Mode = GPIO_MODE_OUTPUT_PP;
   GPIO_InitStruct.Pull = GPIO_NOPULL;
   GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_LOW;
