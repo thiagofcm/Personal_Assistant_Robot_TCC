@@ -1,10 +1,10 @@
-21:41:18 **** Incremental Build of configuration Debug for project teste_hcsr04v2 ****
+11:15:22 **** Incremental Build of configuration Debug for project teste_hcsr04v2 ****
 make -j8 all 
 arm-none-eabi-size   teste_hcsr04v2.elf 
    text	   data	    bss	    dec	    hex	filename
-  14928	    100	   2060	  17088	   42c0	teste_hcsr04v2.elf
+  14556	    100	   2060	  16716	   414c	teste_hcsr04v2.elf
 Finished building: default.size.stdout
  
 
-21:41:19 Build Finished. 0 errors, 0 warnings. (took 427ms)
+11:15:22 Build Finished. 0 errors, 0 warnings. (took 485ms)
 

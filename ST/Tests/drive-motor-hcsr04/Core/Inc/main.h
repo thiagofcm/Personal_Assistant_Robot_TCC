@@ -59,6 +59,8 @@ void Error_Handler(void);
 /* USER CODE END EFP */
 
 /* Private defines -----------------------------------------------------------*/
+#define TIM5_CH1_Pin GPIO_PIN_0
+#define TIM5_CH1_GPIO_Port GPIOA
 
 /* USER CODE BEGIN Private defines */
 
