@@ -18,7 +18,7 @@ extern TIM_HandleTypeDef htim5;
 
 #define  CH_MOTOR_EN_B TIM_CHANNEL_2
 #define  CH_MOTOR_EN_A TIM_CHANNEL_1
-
+//teste
 
 
 void motor_re(void){
