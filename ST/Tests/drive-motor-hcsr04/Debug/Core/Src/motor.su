@@ -1,6 +1,6 @@
-../Core/Src/motor.c:11:6:motor_re	8	static
-../Core/Src/motor.c:21:6:motor_right	8	static
-../Core/Src/motor.c:32:6:motor_left	8	static
-../Core/Src/motor.c:43:6:motor_frente	8	static
-../Core/Src/motor.c:52:6:motor_parado	4	static
-../Core/Src/motor.c:57:6:motor_desvia	16	static
+../Core/Src/motor.c:24:6:motor_re	8	static
+../Core/Src/motor.c:34:6:motor_right	8	static
+../Core/Src/motor.c:44:6:motor_left	8	static
+../Core/Src/motor.c:54:6:motor_frente	8	static
+../Core/Src/motor.c:65:6:motor_parado	8	static
+../Core/Src/motor.c:75:6:motor_desvia	16	static
