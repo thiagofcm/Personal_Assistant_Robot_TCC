@@ -52,6 +52,9 @@ default.size.stdout \
 OBJDUMP_LIST += \
 drive-motor-hcsr04.list \
 
+OBJCOPY_BIN += \
+drive-motor-hcsr04.bin \
+
 
 # All Target
 all: main-build
@@ -60,8 +63,8 @@ all: main-build
 main-build: drive-motor-hcsr04.elf secondary-outputs
 
 # Tool invocations
-drive-motor-hcsr04.elf drive-motor-hcsr04.map: $(OBJS) $(USER_OBJS) E:\UFU\TCC\Github\ Rep\TCC-PA-Robot\ST\Tests\drive-motor-hcsr04\STM32F411CEUX_FLASH.ld makefile objects.list $(OPTIONAL_TOOL_DEPS)
-	arm-none-eabi-gcc -o "drive-motor-hcsr04.elf" @"objects.list" $(USER_OBJS) $(LIBS) -mcpu=cortex-m4 -T"E:\UFU\TCC\Github Rep\TCC-PA-Robot\ST\Tests\drive-motor-hcsr04\STM32F411CEUX_FLASH.ld" --specs=nosys.specs -Wl,-Map="drive-motor-hcsr04.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+drive-motor-hcsr04.elf drive-motor-hcsr04.map: $(OBJS) $(USER_OBJS) C:\UFU\Github-Rep\TCC-PA-Robot\ST\Tests\drive-motor-hcsr04\STM32F411CEUX_FLASH.ld makefile objects.list $(OPTIONAL_TOOL_DEPS)
+	arm-none-eabi-gcc -o "drive-motor-hcsr04.elf" @"objects.list" $(USER_OBJS) $(LIBS) -mcpu=cortex-m4 -T"C:\UFU\Github-Rep\TCC-PA-Robot\ST\Tests\drive-motor-hcsr04\STM32F411CEUX_FLASH.ld" --specs=nosys.specs -Wl,-Map="drive-motor-hcsr04.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
 	@echo 'Finished building target: $@'
 	@echo ' '
 
@@ -75,12 +78,17 @@ drive-motor-hcsr04.list: $(EXECUTABLES) makefile objects.list $(OPTIONAL_TOOL_DE
 	@echo 'Finished building: $@'
 	@echo ' '
 
+drive-motor-hcsr04.bin: $(EXECUTABLES) makefile objects.list $(OPTIONAL_TOOL_DEPS)
+	arm-none-eabi-objcopy  -O binary $(EXECUTABLES) "drive-motor-hcsr04.bin"
+	@echo 'Finished building: $@'
+	@echo ' '
+
 # Other Targets
 clean:
-	-$(RM) default.size.stdout drive-motor-hcsr04.elf drive-motor-hcsr04.list drive-motor-hcsr04.map
+	-$(RM) default.size.stdout drive-motor-hcsr04.bin drive-motor-hcsr04.elf drive-motor-hcsr04.list drive-motor-hcsr04.map
 	-@echo ' '
 
-secondary-outputs: $(SIZE_OUTPUT) $(OBJDUMP_LIST)
+secondary-outputs: $(SIZE_OUTPUT) $(OBJDUMP_LIST) $(OBJCOPY_BIN)
 
 fail-specified-linker-script-missing:
 	@echo 'Error: Cannot find the specified linker script. Check the linker settings in the build configuration.'

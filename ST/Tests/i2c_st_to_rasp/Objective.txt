@@ -1,0 +1,5 @@
+Build a master/slave communication via i2c between stm32 (slave) and raspberry pi (master)
+
+the master will be able to write commands in a machine-state and read the current state of the slave
+
+current problem: i have to put a timer to read the led output.

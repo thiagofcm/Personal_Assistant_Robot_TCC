@@ -61,6 +61,10 @@ void Error_Handler(void);
 /* Private defines -----------------------------------------------------------*/
 #define TIM5_CH1_Pin GPIO_PIN_0
 #define TIM5_CH1_GPIO_Port GPIOA
+#define GREEN_LED_Pin GPIO_PIN_13
+#define GREEN_LED_GPIO_Port GPIOB
+#define RED_LED_Pin GPIO_PIN_14
+#define RED_LED_GPIO_Port GPIOB
 
 /* USER CODE BEGIN Private defines */
 

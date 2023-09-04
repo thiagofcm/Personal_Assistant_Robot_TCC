@@ -37,15 +37,15 @@ Idx Name          Size      VMA       LMA       File off  Algn
                   CONTENTS, READONLY, DEBUGGING, OCTETS
  16 .debug_rnglists 00000974  00000000  00000000  0002fb10  2**0
                   CONTENTS, READONLY, DEBUGGING, OCTETS
- 17 .debug_macro  000167e9  00000000  00000000  00030484  2**0
+ 17 .debug_macro  00016801  00000000  00000000  00030484  2**0
                   CONTENTS, READONLY, DEBUGGING, OCTETS
- 18 .debug_line   0000de4a  00000000  00000000  00046c6d  2**0
+ 18 .debug_line   0000dee8  00000000  00000000  00046c85  2**0
                   CONTENTS, READONLY, DEBUGGING, OCTETS
- 19 .debug_str    0008d77b  00000000  00000000  00054ab7  2**0
+ 19 .debug_str    0008d79a  00000000  00000000  00054b6d  2**0
                   CONTENTS, READONLY, DEBUGGING, OCTETS
- 20 .debug_frame  00003268  00000000  00000000  000e2234  2**2
+ 20 .debug_frame  00003268  00000000  00000000  000e2308  2**2
                   CONTENTS, READONLY, DEBUGGING, OCTETS
- 21 .debug_line_str 00000069  00000000  00000000  000e549c  2**0
+ 21 .debug_line_str 00000069  00000000  00000000  000e5570  2**0
                   CONTENTS, READONLY, DEBUGGING, OCTETS
 
 Disassembly of section .text:
@@ -1202,7 +1202,7 @@ static void MX_GPIO_Init(void)
  80009b2:	f000 fe4d 	bl	8001650 <HAL_GPIO_WritePin>
 
   /*Configure GPIO pin Output Level */
-  HAL_GPIO_WritePin(GPIOB, GPIO_PIN_0|GPIO_PIN_1|GPIO_PIN_13|GPIO_PIN_14, GPIO_PIN_RESET);
+  HAL_GPIO_WritePin(GPIOB, GPIO_PIN_0|GPIO_PIN_1|GREEN_LED_Pin|RED_LED_Pin, GPIO_PIN_RESET);
  80009b6:	2200      	movs	r2, #0
  80009b8:	f246 0103 	movw	r1, #24579	; 0x6003
  80009bc:	4814      	ldr	r0, [pc, #80]	; (8000a10 <MX_GPIO_Init+0xb4>)
@@ -1227,8 +1227,8 @@ static void MX_GPIO_Init(void)
  80009da:	480c      	ldr	r0, [pc, #48]	; (8000a0c <MX_GPIO_Init+0xb0>)
  80009dc:	f000 fcb4 	bl	8001348 <HAL_GPIO_Init>
 
-  /*Configure GPIO pins : PB0 PB1 PB13 PB14 */
-  GPIO_InitStruct.Pin = GPIO_PIN_0|GPIO_PIN_1|GPIO_PIN_13|GPIO_PIN_14;
+  /*Configure GPIO pins : PB0 PB1 GREEN_LED_Pin RED_LED_Pin */
+  GPIO_InitStruct.Pin = GPIO_PIN_0|GPIO_PIN_1|GREEN_LED_Pin|RED_LED_Pin;
  80009e0:	f246 0303 	movw	r3, #24579	; 0x6003
  80009e4:	60fb      	str	r3, [r7, #12]
   GPIO_InitStruct.Mode = GPIO_MODE_OUTPUT_PP;
@@ -1597,17 +1597,10 @@ void motor_desvia(uint16_t distancia){
  8000c36:	f240 20ee 	movw	r0, #750	; 0x2ee
  8000c3a:	f000 fa4f 	bl	80010dc <HAL_Delay>
   		motor_left();
-<<<<<<< HEAD
- 8000c46:	f7ff ffb7 	bl	8000bb8 <motor_left>
-  		HAL_Delay(1001);
- 8000c4a:	f240 30e9 	movw	r0, #1001	; 0x3e9
- 8000c4e:	f000 fa45 	bl	80010dc <HAL_Delay>
-=======
  8000c3e:	f7ff ff9f 	bl	8000b80 <motor_left>
-  		HAL_Delay(1000);
- 8000c42:	f44f 707a 	mov.w	r0, #1000	; 0x3e8
+  		HAL_Delay(1001);
+ 8000c42:	f240 30e9 	movw	r0, #1001	; 0x3e9
  8000c46:	f000 fa49 	bl	80010dc <HAL_Delay>
->>>>>>> checkout-sensor-led-working
   		break;
  8000c4a:	e000      	b.n	8000c4e <motor_desvia+0x2e>
   	}
@@ -2299,46 +2292,103 @@ void SystemInit(void)
  8000fa0:	e000ed00 	.word	0xe000ed00
 
 08000fa4 <Reset_Handler>:
+
+    .section  .text.Reset_Handler
+  .weak  Reset_Handler
+  .type  Reset_Handler, %function
+Reset_Handler:  
+  ldr   sp, =_estack    		 /* set stack pointer */
  8000fa4:	f8df d034 	ldr.w	sp, [pc, #52]	; 8000fdc <LoopFillZerobss+0x12>
+
+/* Copy the data segment initializers from flash to SRAM */  
+  ldr r0, =_sdata
  8000fa8:	480d      	ldr	r0, [pc, #52]	; (8000fe0 <LoopFillZerobss+0x16>)
+  ldr r1, =_edata
  8000faa:	490e      	ldr	r1, [pc, #56]	; (8000fe4 <LoopFillZerobss+0x1a>)
+  ldr r2, =_sidata
  8000fac:	4a0e      	ldr	r2, [pc, #56]	; (8000fe8 <LoopFillZerobss+0x1e>)
+  movs r3, #0
  8000fae:	2300      	movs	r3, #0
+  b LoopCopyDataInit
  8000fb0:	e002      	b.n	8000fb8 <LoopCopyDataInit>
 
 08000fb2 <CopyDataInit>:
+
+CopyDataInit:
+  ldr r4, [r2, r3]
  8000fb2:	58d4      	ldr	r4, [r2, r3]
+  str r4, [r0, r3]
  8000fb4:	50c4      	str	r4, [r0, r3]
+  adds r3, r3, #4
  8000fb6:	3304      	adds	r3, #4
 
 08000fb8 <LoopCopyDataInit>:
+
+LoopCopyDataInit:
+  adds r4, r0, r3
  8000fb8:	18c4      	adds	r4, r0, r3
+  cmp r4, r1
  8000fba:	428c      	cmp	r4, r1
+  bcc CopyDataInit
  8000fbc:	d3f9      	bcc.n	8000fb2 <CopyDataInit>
+  
+/* Zero fill the bss segment. */
+  ldr r2, =_sbss
  8000fbe:	4a0b      	ldr	r2, [pc, #44]	; (8000fec <LoopFillZerobss+0x22>)
+  ldr r4, =_ebss
  8000fc0:	4c0b      	ldr	r4, [pc, #44]	; (8000ff0 <LoopFillZerobss+0x26>)
+  movs r3, #0
  8000fc2:	2300      	movs	r3, #0
+  b LoopFillZerobss
  8000fc4:	e001      	b.n	8000fca <LoopFillZerobss>
 
 08000fc6 <FillZerobss>:
+
+FillZerobss:
+  str  r3, [r2]
  8000fc6:	6013      	str	r3, [r2, #0]
+  adds r2, r2, #4
  8000fc8:	3204      	adds	r2, #4
 
 08000fca <LoopFillZerobss>:
+
+LoopFillZerobss:
+  cmp r2, r4
  8000fca:	42a2      	cmp	r2, r4
+  bcc FillZerobss
  8000fcc:	d3fb      	bcc.n	8000fc6 <FillZerobss>
+
+/* Call the clock system initialization function.*/
+  bl  SystemInit   
  8000fce:	f7ff ffd7 	bl	8000f80 <SystemInit>
+/* Call static constructors */
+    bl __libc_init_array
  8000fd2:	f002 fd37 	bl	8003a44 <__libc_init_array>
+/* Call the application's entry point.*/
+  bl  main
  8000fd6:	f7ff fab7 	bl	8000548 <main>
+  bx  lr    
  8000fda:	4770      	bx	lr
+  ldr   sp, =_estack    		 /* set stack pointer */
  8000fdc:	20020000 	.word	0x20020000
+  ldr r0, =_sdata
  8000fe0:	20000000 	.word	0x20000000
+  ldr r1, =_edata
  8000fe4:	2000000c 	.word	0x2000000c
+  ldr r2, =_sidata
  8000fe8:	08003acc 	.word	0x08003acc
+  ldr r2, =_sbss
  8000fec:	2000000c 	.word	0x2000000c
+  ldr r4, =_ebss
  8000ff0:	20000158 	.word	0x20000158
 
 08000ff4 <ADC_IRQHandler>:
+ * @retval None       
+*/
+    .section  .text.Default_Handler,"ax",%progbits
+Default_Handler:
+Infinite_Loop:
+  b  Infinite_Loop
  8000ff4:	e7fe      	b.n	8000ff4 <ADC_IRQHandler>
 	...
 
