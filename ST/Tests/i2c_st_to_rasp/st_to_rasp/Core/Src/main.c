@@ -43,19 +43,21 @@
 /* Private variables ---------------------------------------------------------*/
 I2C_HandleTypeDef hi2c1;
 
+TIM_HandleTypeDef htim1;
+
 UART_HandleTypeDef huart1;
 
 osThreadId defaultTaskHandle;
 osThreadId IrReadTaskHandle;
 osThreadId I2CSendTaskHandle;
 osMutexId I2CMutexHandle;
-
-
 /* USER CODE BEGIN PV */
 #define TXBUFFSIZE 1
 volatile uint8_t rx_buff;
 uint8_t tx_buff=0;
 uint8_t erro=0;
+uint32_t timerCount=0;
+uint32_t ledState=0;
 
 HAL_StatusTypeDef sig = 0x0;
 void ResetI2C(I2C_HandleTypeDef* rev_i2c){
@@ -70,6 +72,7 @@ void SystemClock_Config(void);
 static void MX_GPIO_Init(void);
 static void MX_USART1_UART_Init(void);
 static void MX_I2C1_Init(void);
+static void MX_TIM1_Init(void);
 void StartDefaultTask(void const * argument);
 void IRTask_Start(void const * argument);
 void I2CSendTask_Start(void const * argument);
@@ -113,6 +116,7 @@ int main(void)
   MX_GPIO_Init();
   MX_USART1_UART_Init();
   MX_I2C1_Init();
+  MX_TIM1_Init();
   /* USER CODE BEGIN 2 */
 
   /* USER CODE END 2 */
@@ -164,11 +168,9 @@ int main(void)
   while (1)
   {
     /* USER CODE END WHILE */
-	  HAL_GPIO_WritePin(GPIOC, GPIO_PIN_13, 0);
-	  HAL_Delay(3000);
-	  HAL_GPIO_WritePin(GPIOC, GPIO_PIN_13, 1);
-	  HAL_Delay(3000);
+
     /* USER CODE BEGIN 3 */
+
   }
   /* USER CODE END 3 */
 }
@@ -250,6 +252,65 @@ static void MX_I2C1_Init(void)
   /* USER CODE BEGIN I2C1_Init 2 */
 
   /* USER CODE END I2C1_Init 2 */
+
+}
+
+/**
+  * @brief TIM1 Initialization Function
+  * @param None
+  * @retval None
+  */
+static void MX_TIM1_Init(void)
+{
+
+  /* USER CODE BEGIN TIM1_Init 0 */
+
+  /* USER CODE END TIM1_Init 0 */
+
+  TIM_ClockConfigTypeDef sClockSourceConfig = {0};
+  TIM_MasterConfigTypeDef sMasterConfig = {0};
+  TIM_IC_InitTypeDef sConfigIC = {0};
+
+  /* USER CODE BEGIN TIM1_Init 1 */
+
+  /* USER CODE END TIM1_Init 1 */
+  htim1.Instance = TIM1;
+  htim1.Init.Prescaler = 10000-1;
+  htim1.Init.CounterMode = TIM_COUNTERMODE_UP;
+  htim1.Init.Period = 65535;
+  htim1.Init.ClockDivision = TIM_CLOCKDIVISION_DIV1;
+  htim1.Init.RepetitionCounter = 0;
+  htim1.Init.AutoReloadPreload = TIM_AUTORELOAD_PRELOAD_DISABLE;
+  if (HAL_TIM_Base_Init(&htim1) != HAL_OK)
+  {
+    Error_Handler();
+  }
+  sClockSourceConfig.ClockSource = TIM_CLOCKSOURCE_INTERNAL;
+  if (HAL_TIM_ConfigClockSource(&htim1, &sClockSourceConfig) != HAL_OK)
+  {
+    Error_Handler();
+  }
+  if (HAL_TIM_IC_Init(&htim1) != HAL_OK)
+  {
+    Error_Handler();
+  }
+  sMasterConfig.MasterOutputTrigger = TIM_TRGO_RESET;
+  sMasterConfig.MasterSlaveMode = TIM_MASTERSLAVEMODE_DISABLE;
+  if (HAL_TIMEx_MasterConfigSynchronization(&htim1, &sMasterConfig) != HAL_OK)
+  {
+    Error_Handler();
+  }
+  sConfigIC.ICPolarity = TIM_INPUTCHANNELPOLARITY_RISING;
+  sConfigIC.ICSelection = TIM_ICSELECTION_DIRECTTI;
+  sConfigIC.ICPrescaler = TIM_ICPSC_DIV1;
+  sConfigIC.ICFilter = 0;
+  if (HAL_TIM_IC_ConfigChannel(&htim1, &sConfigIC, TIM_CHANNEL_1) != HAL_OK)
+  {
+    Error_Handler();
+  }
+  /* USER CODE BEGIN TIM1_Init 2 */
+
+  /* USER CODE END TIM1_Init 2 */
 
 }
 
@@ -393,15 +454,14 @@ void I2CSendTask_Start(void const * argument)
     osDelay(20);
 	}
   /* USER CODE END I2CSendTask_Start */
-  }
 }
+
 /**
   * @brief  This function is executed in case of error occurrence.
   * @retval None
   */
 void Error_Handler(void)
 {
-//	erro = 1;
   /* USER CODE BEGIN Error_Handler_Debug */
   /* User can add his own implementation to report the HAL error return state */
   __disable_irq();
@@ -411,7 +471,7 @@ void Error_Handler(void)
   }
 }
   /* USER CODE END Error_Handler_Debug */
-
+}
 
 #ifdef  USE_FULL_ASSERT
 /**
