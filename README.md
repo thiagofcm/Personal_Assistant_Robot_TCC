@@ -18,6 +18,7 @@ I've organized the development of this project into eight basic stages:
 8. Final Tests and Adjustments.
 
 Recent updates and checkpoints:
+
 01/08/23: Basic Hardware and Software Tests Stage - Motor Control tests.
 
 11/08/23: Basic Hardware and Software Tests Stage - Ultrasonic sensor tests.
