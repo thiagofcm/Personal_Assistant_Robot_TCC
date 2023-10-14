@@ -1,4 +1,4 @@
-# Personal Assistant Robot - Bachelor Thesis
+# Personal Assistant Robot - Bachelor's Thesis
 
 This project aims to build an intelligent Personal Assistant Robot capable of receiving voice commands and performing simple tasks, including following a specific person (Follow Mode), retrieving objects (Find Object Mode), and providing information (Info Mode).
 
