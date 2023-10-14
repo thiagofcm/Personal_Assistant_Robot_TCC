@@ -8,20 +8,24 @@ The robot's structure consists of a rover track belt connected to each motor, an
 
 I've organized the development of this project into eight basic stages:
 
-Requirements Study: A study of how the project will function and which tools will be used to achieve its goals.
-Basic Hardware and Software Tests: An examination of the sensors and microcontrollers used, validating each component separately before integration.
-Development of the Integrated System: Tests and further development after the initial integration of peripheral systems.
-Software Improvements: Evaluation of software features that can be added, removed, or enhanced to optimize the complete system.
-Hardware Improvements: An investigation of hardware requirements for building PCB versions.
-Software and Hardware Implementations: Implementation of software and hardware following information gathering.
-Visual and Aesthetic Finishes: Consideration of the robot's visual features.
-Final Tests and Adjustments.
-Recent updates and checkpoints:
+1. Requirements Study: A study of how the project will function and which tools will be used to achieve its goals.
+2. Basic Hardware and Software Tests: An examination of the sensors and microcontrollers used, validating each component separately before integration.
+3. Development of the Integrated System: Tests and further development after the initial integration of peripheral systems.
+4. Software Improvements: Evaluation of software features that can be added, removed, or enhanced to optimize the complete system.
+5. Hardware Improvements: An investigation of hardware requirements for building PCB versions.
+6. Software and Hardware Implementations: Implementation of software and hardware following information gathering.
+7. Visual and Aesthetic Finishes: Consideration of the robot's visual features.
+8. Final Tests and Adjustments.
 
+Recent updates and checkpoints:
 01/08/23: Basic Hardware and Software Tests Stage - Motor Control tests.
+
 11/08/23: Basic Hardware and Software Tests Stage - Ultrasonic sensor tests.
+
 20/08/23: Basic Hardware and Software Tests Stage - Motor Control and Ultrasonic sensor Integration.
+
 02/09/23: Basic Hardware and Software Tests Stage - Temporary PCB added to the circuit.
+
 (NOW) 01/10/23: Basic Hardware and Software Tests Stage - The robot is now capable of moving through the environment and avoiding obstacles using the ultrasonic sensor. I'm currently focused on ensuring communication between the ST Microcontroller and the Raspberry Pi."
 
 Current Robot Image:
