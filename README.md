@@ -28,7 +28,11 @@ Recent updates and checkpoints:
 
 (NOW) 01/10/23: Basic Hardware and Software Tests Stage - The robot is now capable of moving through the environment and avoiding obstacles using the ultrasonic sensor. I'm currently focused on ensuring communication between the ST Microcontroller and the Raspberry Pi."
 
-Current Robot Image:
+Current Robot Images:
+![Personal_Assistant_Robot1](https://github.com/thiagofcm/Personal_Assistant_Robot_TCC/assets/22446244/e5b46cf7-b34e-46e4-ad61-13eb81d811cc)
+
+![Personal_Assistant_Robot2](https://github.com/thiagofcm/Personal_Assistant_Robot_TCC/assets/22446244/65def04f-73bd-4eb1-a230-806fc0ca966d)
+
 
 The robot is a rover based on the project below:
 https://github.com/SaralTayal123/Object-Finding-Rover/tree/master
