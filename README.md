@@ -28,7 +28,10 @@ Recent updates and checkpoints:
 02/09/23: Basic Hardware and Software Tests Stage - Temporary PCB added to the circuit.
 
 01/10/23: Basic Hardware and Software Tests Stage - The robot is now capable of moving through the environment and avoiding obstacles using the ultrasonic sensor. I'm currently focused on ensuring communication between the ST Microcontroller and the Raspberry Pi."
+
 (NOW) 30/12/23: Writing and formalization of the preliminary project to be submitted to the evaluation committee of the Electrical and Computer Engineering Department.
+
+
 Current Robot Images:
 ![Personal_Assistant_Robot1](https://github.com/thiagofcm/Personal_Assistant_Robot_TCC/assets/22446244/e5b46cf7-b34e-46e4-ad61-13eb81d811cc)
 
