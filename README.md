@@ -2,20 +2,21 @@
 
 This project aims to build an intelligent Personal Assistant Robot capable of receiving voice commands and performing simple tasks, including following a specific person (Follow Mode), retrieving objects (Find Object Mode), and providing information (Info Mode).
 
-Internally, the robot operates using a modular design. It employs a micro-controller STM32F41106 to control the motors and the ultrasonic sensor, and a micro-controller Sipeed K210 is responsible for running the neural network, image processing, and embedded machine learning. Finally, a Raspberry Pi 3 serves as a central data management unit that coordinates both of these separate modules.
+Internally, the robot operates using a modular design. It employs a micro-controller STM32F41106 to control the motors and the ultrasonic sensor, and a micro-controller Sipeed Maixduino is responsible for running the neural network, image processing, and embedded machine learning. Finally, a Raspberry Pi 3 serves as a central data management unit that coordinates both of these separate modules.
 
 The robot's structure consists of a rover track belt connected to each motor, an aluminum chassis, and an external 3D finish.
 
 I've organized the development of this project into eight basic stages:
 
-1. Requirements Study: A study of how the project will function and which tools will be used to achieve its goals.
-2. Basic Hardware and Software Tests: An examination of the sensors and microcontrollers used, validating each component separately before integration.
-3. Development of the Integrated System: Tests and further development after the initial integration of peripheral systems.
-4. Software Improvements: Evaluation of software features that can be added, removed, or enhanced to optimize the complete system.
-5. Hardware Improvements: An investigation of hardware requirements for building PCB versions.
-6. Software and Hardware Implementations: Implementation of software and hardware following information gathering.
-7. Visual and Aesthetic Finishes: Consideration of the robot's visual features.
-8. Final Tests and Adjustments.
+1. Development of Raspberry Pi 3 firmware, involving speech recognition and serial communication software to send commands and data to other microcontrollers.
+2. Development of STM32 firmware, responsible for controlling motors and the ultrasonic sensor, as well as receiving commands and data from the Raspberry Pi controller.
+3. Development of Maixduino firmware responsible for object and face detection, and reception of commands and data from the Raspberry Pi controller.
+4. Basic Hardware and Software Tests: Examination of sensors and microcontroller firmware, validating each software and component separately before integration.
+5. Development of the Integrated System: Testing and further development after the initial integration of peripheral systems.
+6. Software Improvements: Evaluation of software features for potential additions, removals, or enhancements to optimize the complete system.
+7. Hardware Improvements: Investigation of hardware requirements for building PCB versions and subsequent implementation.
+8. 3D Printed Structure: Design and fabrication of a 3D printed structure for the robot, considering both functional and aesthetic aspects.
+9. Final Tests and Adjustments: Final phase where rigorous testing is conducted to ensure the seamless integration of all components, functional accuracy, and optimal performance of the robot.
 
 Recent updates and checkpoints:
 
