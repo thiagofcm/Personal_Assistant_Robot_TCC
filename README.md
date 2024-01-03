@@ -6,17 +6,18 @@ Internally, the robot operates using a modular design. It employs a micro-contro
 
 The robot's structure consists of a rover track belt connected to each motor, an aluminum chassis, and an external 3D finish.
 
-I've organized the development of this project into nine basic stages:
+I've organized the development of this project into ten basic stages:
 
-1. Development of Raspberry Pi 3 firmware, involving speech recognition and serial communication software to send commands and data to other microcontrollers.
-2. Development of STM32 firmware, responsible for controlling motors and the ultrasonic sensor, as well as receiving commands and data from the Raspberry Pi controller.
-3. Development of Maixduino firmware responsible for object and face detection, and reception of commands and data from the Raspberry Pi controller.
-4. Basic Hardware and Software Tests: Examination of sensors and microcontroller firmware, validating each software and component separately before integration.
-5. Development of the Integrated System: Testing and further development after the initial integration of peripheral systems.
-6. Software Improvements: Evaluation of software features for potential additions, removals, or enhancements to optimize the complete system.
-7. Hardware Improvements: Investigation of hardware requirements for building PCB versions and subsequent implementation.
-8. 3D Printed Structure: Design and fabrication of a 3D printed structure for the robot, considering both functional and aesthetic aspects.
-9. Final Tests and Adjustments: Final phase where rigorous testing is conducted to ensure the seamless integration of all components, functional accuracy, and optimal performance of the robot.
+1. Requirements Study: An analysis of relevant literature and projects to determine the project's approach and identify the tools necessary to achieve its goals.
+2. Development of Raspberry Pi 3 firmware, involving speech recognition and serial communication software to send commands and data to other microcontrollers.
+3. Development of STM32 firmware, responsible for controlling motors and the ultrasonic sensor, as well as receiving commands and data from the Raspberry Pi controller.
+4. Development of Maixduino firmware responsible for object and face detection, and reception of commands and data from the Raspberry Pi controller.
+5. Basic Hardware and Software Tests: Examination of sensors and microcontroller firmware, validating each software and component separately before integration.
+6. Development of the Integrated System: Testing and further development after the initial integration of peripheral systems.
+7. Software Improvements: Evaluation of software features for potential additions, removals, or enhancements to optimize the complete system.
+8. Hardware Improvements: Investigation of hardware requirements for building PCB versions and subsequent implementation.
+9. 3D Printed Structure: Design and fabrication of a 3D printed structure for the robot, considering both functional and aesthetic aspects.
+10. Final Tests and Adjustments: Final phase where rigorous testing is conducted to ensure the seamless integration of all components, functional accuracy, and optimal performance of the robot.
 
 Recent updates and checkpoints:
 
