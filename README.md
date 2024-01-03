@@ -6,7 +6,7 @@ Internally, the robot operates using a modular design. It employs a micro-contro
 
 The robot's structure consists of a rover track belt connected to each motor, an aluminum chassis, and an external 3D finish.
 
-I've organized the development of this project into eight basic stages:
+I've organized the development of this project into nine basic stages:
 
 1. Development of Raspberry Pi 3 firmware, involving speech recognition and serial communication software to send commands and data to other microcontrollers.
 2. Development of STM32 firmware, responsible for controlling motors and the ultrasonic sensor, as well as receiving commands and data from the Raspberry Pi controller.
