@@ -41,10 +41,17 @@ In order to achieve the general and specific objectives of the work, the constru
 
 02/09/23: Basic Hardware and Software Tests Stage - Temporary PCB added to the circuit.
 
-01/10/23: Basic Hardware and Software Tests Stage - The robot is now capable of moving through the environment and avoiding obstacles using the ultrasonic sensor. I'm currently focused on ensuring communication between the ST Microcontroller and the Raspberry Pi."
+01/10/23: Basic Hardware and Software Tests Stage - The robot is now capable of moving through the environment and avoiding obstacles using the ultrasonic sensor. 
 
-# (NOW) 30/12/23: Writing and formalization of the preliminary project to be submitted to the evaluation committee of the Electrical and Computer Engineering Department.
+20/12/23: Writing and formalization of the preliminary project to be submitted to the evaluation committee of the Electrical and Computer Engineering Department.
 
+07/01/24: Finish of the preliminary project (Documents/Projeto__TCC__Thiago_Cuevas.pdf).
+
+12/01/24: Development of the speech recognition and voice assistant firmware on Rasbperry Pi 3 (Rasp/scr). *Hot word still needs improvements
+
+(NOW)16/01/24: Development of a UART communication firmware test between Rasp and Maixduino.
+
+(NOW)15/01/24: Development of the tracking objects firmware on Maixduino. A servo motor is already capable of follow the movement of an object. *still needs improvements 
 
 # 5. Current Robot Images:
 ![Personal_Assistant_Robot1](https://github.com/thiagofcm/Personal_Assistant_Robot_TCC/assets/22446244/e5b46cf7-b34e-46e4-ad61-13eb81d811cc)
