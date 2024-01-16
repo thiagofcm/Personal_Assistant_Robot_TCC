@@ -12,7 +12,7 @@ import pyaudio
 engine = pyttsx3.init()
 
 #Set your openai api key and customizing the chatgpt role
-openai.api_key = "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"
+openai.api_key = "xyz"
 messages = [{"role": "system", "content": "Your name is Jarvis and give answers in 2 lines"}]
 
 #Customizing The output voice
