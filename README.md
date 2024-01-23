@@ -47,11 +47,22 @@ In order to achieve the general and specific objectives of the work, the constru
 
 07/01/24: Finish of the preliminary project (Documents/Projeto__TCC__Thiago_Cuevas.pdf).
 
-12/01/24: Development of the speech recognition and voice assistant firmware on Rasbperry Pi 3 (Rasp/scr). *Hot word still needs improvements
+12/01/24: Development of the speech recognition and voice assistant firmware on Rasbperry Pi 3 (Rasp/scr). 
 
-(NOW)16/01/24: Development of a UART communication firmware test between Rasp and Maixduino.
+16/01/24: Development of a UART communication firmware test between Rasp and Maixduino.
 
-(NOW)15/01/24: Development of the tracking objects firmware on Maixduino. A servo motor is already capable of follow the movement of an object. *still needs improvements 
+15/01/24: Development of the tracking objects firmware on Maixduino. A servo motor is already capable of follow the movement of an object.
+
+20/01/24: Voice assistant running with an ChatGPT API that answers questions based on OpenAI database.
+
+22/01/24: UART communication between Rasp and Maixduino done and already capable of switch between two different AI models (face recognition, to follow people, and object detection, to deliver objects).
+
+(NOW) 23/01/24: Looking for complete and make improvements in the maixduino switching_models and voice_assistant code. Some problems include:
+- The voice assistant still listening during an object or face detection task, which it's annoying because the assistant tries to listen and understand what he is not supposed to listen or understand.
+- The Object recognition model needs to track and get the relative position of the object. The code at this point already satisfies this requirement, but without any filter. As the user asks for an especific object, the firmware has to understand and apply an filter to track the right object.
+- The Face recognition model needs to track and get the relative position of a face, and also estimate a distance based on the area of the rectangle draw around a recognized face. This feature is not complete.
+
+NEXT STEPS: After reach the previous goals, its time to start writing fuctions to send the tracking data (angle and direction of tracked objects/faces) via I2C protocol from the Maixduino to the Stm32 microcontroller.
 
 # 5. Current Robot Images:
 ![Personal_Assistant_Robot1](https://github.com/thiagofcm/Personal_Assistant_Robot_TCC/assets/22446244/e5b46cf7-b34e-46e4-ad61-13eb81d811cc)
