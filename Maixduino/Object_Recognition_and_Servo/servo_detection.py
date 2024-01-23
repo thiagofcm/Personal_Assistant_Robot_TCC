@@ -20,7 +20,7 @@ clock = time.clock()
 classes = ['aeroplane', 'bicycle', 'bird', 'boat', 'bottle', 'bus', 'car', 'cat', 'chair', 'cow', 'diningtable', 'dog', 'horse', 'motorbike', 'person', 'pottedplant', 'sheep', 'sofa', 'train', 'tvmonitor']
 task = kpu.load(0x500000)
 anchor = (1.08, 1.19, 3.42, 4.41, 6.63, 11.38, 9.42, 5.11, 16.62, 10.52)
-a = kpu.init_yolo2(task, 0.5, 0.3, 5, anchor)
+a = kpu.init_yolo2(task, 0.7, 0.3, 5, anchor)
 
 #function to write an angle in the servo motor
 def Servo(servo,angle):
@@ -106,8 +106,8 @@ while(True):
             in_min = 0
             in_max = 100
             #set the limits of the angle value (-90 - 90)
-            out_min = 0
-            out_max = 180
+            out_min = -90
+            out_max = 90
 
             #map function, or linear linearization of the inver_px value to the angle scale to get the angle of the servo:
             x = (invert_px - in_min) * (out_max - out_min) / (in_max - in_min) + out_min
