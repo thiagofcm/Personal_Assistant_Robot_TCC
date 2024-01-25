@@ -16,11 +16,7 @@ uart = UART(UART.UART1, 115200, read_buf_len=4096)
 tim = Timer(Timer.TIMER0, Timer.CHANNEL0, mode=Timer.MODE_PWM)
 S1 = PWM(tim, freq=50, duty=0, pin=14)
 
-#object detection setup
-classes = ['aeroplane', 'bicycle', 'bird', 'boat', 'bottle', 'bus', 'car', 'cat', 'chair', 'cow', 'diningtable', 'dog', 'horse', 'motorbike', 'person', 'pottedplant', 'sheep', 'sofa', 'train', 'tvmonitor']
-task = kpu.load(0x500000)
-anchor = (1.08, 1.19, 3.42, 4.41, 6.63, 11.38, 9.42, 5.11, 16.62, 10.52)
-a = kpu.init_yolo2(task, 0.7, 0.3, 5, anchor)
+
 
 #function to write an angle in the servo motor
 def Servo(servo,angle):
@@ -28,6 +24,12 @@ def Servo(servo,angle):
 
 #run the object recognition model
 def object_recognition_task(target_object):
+
+    #object detection setup
+    classes = ['aeroplane', 'bicycle', 'bird', 'boat', 'bottle', 'bus', 'car', 'cat', 'chair', 'cow', 'diningtable', 'dog', 'horse', 'motorbike', 'person', 'pottedplant', 'sheep', 'sofa', 'train', 'tvmonitor']
+    task = kpu.load(0x500000)
+    anchor = (1.08, 1.19, 3.42, 4.41, 6.63, 11.38, 9.42, 5.11, 16.62, 10.52)
+    a = kpu.init_yolo2(task, 0.7, 0.3, 5, anchor)
 
     lcd.init()
     #lcd.rotation(2)'
@@ -193,7 +195,7 @@ def object_recognition_task(target_object):
         else:
             pass
 
-#a = kpu.deinit(task) #close task
+    #a = kpu.deinit(task) #close task
 
                 #if var == 'cat':
                     #print('eh um gato')
@@ -211,10 +213,10 @@ def waiting_command():
             command = uart.read()
             command_decoded = command.decode('utf-8')
             obj = command_decoded.split("-")
-            print(obj[1])
+            #print(obj[1])
             if obj[0] == 'bring':
                 print('mensagem bring recebida!')
-                object_recognition_task(obj[2])
+                object_recognition_task(obj[1])
             elif command_decoded == 'follow':
                 print('mensagem follow')
                 follow_task()

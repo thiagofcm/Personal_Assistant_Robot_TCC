@@ -57,12 +57,18 @@ In order to achieve the general and specific objectives of the work, the constru
 
 22/01/24: UART communication between Rasp and Maixduino done and already capable of switch between two different AI models (face recognition, to follow people, and object detection, to deliver objects).
 
-(NOW) 23/01/24: Looking for complete and make improvements in the maixduino switching_models and voice_assistant code. Some problems include:
+23/01/24: Looking for complete and make improvements in the maixduino switching_models and voice_assistant code. Some problems include:
 - The voice assistant still listening during an object or face detection task, which it's annoying because the assistant tries to listen and understand what he is not supposed to listen or understand.
 - The Object recognition model needs to track and get the relative position of the object. The code at this point already satisfies this requirement, but without any filter. As the user asks for an especific object, the firmware has to understand and apply an filter to track the right object.
 - The Face recognition model needs to track and get the relative position of a face, and also estimate a distance based on the area of the rectangle draw around a recognized face. This feature is not complete.
 
-NEXT STEPS: After reach the previous goals, its time to start writing fuctions to send the tracking data (angle and direction of tracked objects/faces) via I2C protocol from the Maixduino to the Stm32 microcontroller.
+24/01/24: Looking for make improvements in the IA models. Updates:
+- Maixduino is running a Switching models code able to change between the object detection and face detection model by serial commands from the Raspberry Pi.
+- Maixduino display a message "waiting command" when it is awaiting for a voice/serial command by the user and the Raspberry Pi.
+- Object detection function now gets the relative position only of the objects required by the user.
+- Face detection function now gets the relative position of faces but just one at time. Seems like when more than one face is captured by the camera, the program doesnt know exactly wich face to track. 
+
+NEXT STEPS: Make the face detection model get the relative position (x and y coordinate) only of the face with the biggest area captured by the camera. After that, its time to start writing fuctions to send the tracking data (angle and direction of tracked objects/faces) via I2C protocol from the Maixduino to the STM32 microcontroller.
 
 # 5. Current Robot Images:
 ![Personal_Assistant_Robot1](https://github.com/thiagofcm/Personal_Assistant_Robot_TCC/assets/22446244/e5b46cf7-b34e-46e4-ad61-13eb81d811cc)

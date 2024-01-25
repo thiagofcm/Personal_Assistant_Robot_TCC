@@ -29,12 +29,13 @@ engine.setProperty('rate', 120)
 engine.setProperty('volume', volume)
 engine.setProperty('voice', 'brazil')
 
+task_flag=False
 
 class Voice_Assistant():
     def __init__(self):
         """Class Builder"""
         self.recognizer = sr.Recognizer()
-        self.microphone = sr.Microphone()
+        self.microphone = sr.Microphone(device_index=1) 
         self.run()
 
     def start_jack_server(self):
@@ -55,7 +56,7 @@ class Voice_Assistant():
     def waiting_hotword(self):
         with self.microphone as source:  
             self.recognizer.adjust_for_ambient_noise(source, 5)
-            self.recognizer.dynamic_energy_threshold = 3000
+            self.recognizer.dynamic_energy_threshold = 4000
             print('Waiting for wakeword \"robô\"...')
             print()
            
@@ -110,6 +111,8 @@ class Voice_Assistant():
 
     def provide_info(self,source):
 
+        global task_flag
+
         while True:
             try:
                 print("Listening...")
@@ -120,7 +123,7 @@ class Voice_Assistant():
                 print(f"Usuario: {query}.")
                 print()
 
-                if 'me trazer' in query:
+                if 'me trazer' in query and task_flag == False:
                     sentence = query.split()
                     obj = sentence[-1]
                     print(f"Robô: \"Ok, irei levar {obj} à voce.\"")
@@ -128,39 +131,51 @@ class Voice_Assistant():
                     engine.say(f'Ok, irei levar {obj} à voce')
                     engine.runAndWait()
                     serial.send_bring_cmd(obj)
+                    task_flag = True
+                    print('Task Mode Activated') #When the robot is in this mode, it just respond to 'parar' and 'obrigado' to finish the task
+                    #serial.wait_finish_task()
 
-                elif 'siga-me' in query:
+                elif 'siga-me' in query and task_flag == False:
                     print("Robô: \"Ok, irei te seguir.\"")
                     print()
                     engine.say("Ok, irei te seguir")
                     engine.runAndWait()
                     serial.send_follow_cmd()
+                    task_flag = True
+                    print('Task Mode Activated') #When the robot is in this mode, it just responds to 'parar' and 'obrigado' to finish the task
+                    #serial.wait_finish_task()   
 
                 elif 'obrigado' in query:
                     print("Robô: \"Sem problemas.\"")
                     print()
                     engine.say("Sem problemas")
                     engine.runAndWait()
-                    
+        
                 
                 elif 'parar' in query:
                     serial.send_stop_cmd()
                     play.end()
+                    task_flag = False
                     self.waiting_hotword_2(source)
+                    
 
                 else:
-                    response_from_openai = self.get_response(query)
-                    engine.say(response_from_openai)
-                    engine.runAndWait()
+                    if task_flag == False:
+                        response_from_openai = self.get_response(query)
+                        engine.say(response_from_openai)
+                        engine.runAndWait()
 
             except sr.UnknownValueError:
                 print("Mensagem desconhecida")
                 print()
-                engine.say("Não entendi")
-                engine.runAndWait()
+                #engine.say("Não entendi")
+                #engine.runAndWait()
             except sr.WaitTimeoutError: 
-                play.end()
-                self.waiting_hotword_2(source)
+                if task_flag == True:
+                    pass
+                else:
+                    play.end()
+                    self.waiting_hotword_2(source)
 
 
     def kill_jackd_server(self):
@@ -170,6 +185,7 @@ class Voice_Assistant():
         os.system(kill_cmd)
         time.sleep(2)
         print("Program closed")
+
 
     def run(self):
         #Starts jack server in a thread:
