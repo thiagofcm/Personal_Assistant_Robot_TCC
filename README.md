@@ -65,10 +65,25 @@ In order to achieve the general and specific objectives of the work, the constru
 24/01/24: Looking for make improvements in the IA models. Updates:
 - Maixduino is running a Switching models code able to change between the object detection and face detection model by serial commands from the Raspberry Pi.
 - Maixduino display a message "waiting command" when it is awaiting for a voice/serial command by the user and the Raspberry Pi.
-- Object detection function now gets the relative position only of the objects required by the user.
+
+IMAGE WAITING COMMAND
+
+- Object detection function now gets the relative position only of the objects required by the user. In the example below, the object required was a car, so the rectangle red and the red circle in the center of the object represents that the model understand that is the object that has to be tracked. 
+
+IMAGE CAR
+
+In other hand, the image of a dog, that's not a car is sourrounded by a green rectangle without any circle in the center, representing that despite recognized, the object is not being tracked.
+
+IMAGE DOG 
+
 - Face detection function now gets the relative position of faces but just one at time. Seems like when more than one face is captured by the camera, the program doesnt know exactly wich face to track. 
 
-NEXT STEPS: Make the face detection model get the relative position (x and y coordinate) only of the face with the biggest area captured by the camera. After that, its time to start writing fuctions to send the tracking data (angle and direction of tracked objects/faces) via I2C protocol from the Maixduino to the STM32 microcontroller.
+25/01/24: Improvements in the Face Detection model done. Updates:
+- The Face Detection model is now able to identify the face with largest area and draw a circle in the center of the rectangle area around the face. This circle is used to track de coordinates of the face's position.
+
+FACE IMAGE
+
+NEXT STEPS: Make the face detection model get the relative position (y coordinate) of the face with the biggest area captured by the camera. After that, its time to start writing fuctions to send the tracking data (angle and direction of tracked objects/faces) via I2C protocol from the Maixduino to the STM32 microcontroller.
 
 # 5. Current Robot Images:
 ![Personal_Assistant_Robot1](https://github.com/thiagofcm/Personal_Assistant_Robot_TCC/assets/22446244/e5b46cf7-b34e-46e4-ad61-13eb81d811cc)
