@@ -66,24 +66,31 @@ In order to achieve the general and specific objectives of the work, the constru
 - Maixduino is running a Switching models code able to change between the object detection and face detection model by serial commands from the Raspberry Pi.
 - Maixduino display a message "waiting command" when it is awaiting for a voice/serial command by the user and the Raspberry Pi.
 
-IMAGE WAITING COMMAND
+![image_waiting_command](https://github.com/thiagofcm/Personal_Assistant_Robot_TCC/blob/d28b8e27569ad44e4f325c1ccfb675bf6a05b32c/Maixduino/Images/waiting-command.jpg)
+
 
 - Object detection function now gets the relative position only of the objects required by the user. In the example below, the object required was a car, so the rectangle red and the red circle in the center of the object represents that the model understand that is the object that has to be tracked. 
 
-IMAGE CAR
+
 
 In other hand, the image of a dog, that's not a car is sourrounded by a green rectangle without any circle in the center, representing that despite recognized, the object is not being tracked.
 
-IMAGE DOG 
+![image_dog_object_detection](https://github.com/thiagofcm/Personal_Assistant_Robot_TCC/blob/d28b8e27569ad44e4f325c1ccfb675bf6a05b32c/Maixduino/Images/object-detection-dog.jpg)
 
 - Face detection function now gets the relative position of faces but just one at time. Seems like when more than one face is captured by the camera, the program doesnt know exactly wich face to track. 
 
 25/01/24: Improvements in the Face Detection model done. Updates:
 - The Face Detection model is now able to identify the face with largest area and draw a circle in the center of the rectangle area around the face. This circle is used to track de coordinates of the face's position.
 
-FACE IMAGE
+![faces_recognition](https://github.com/thiagofcm/Personal_Assistant_Robot_TCC/blob/d28b8e27569ad44e4f325c1ccfb675bf6a05b32c/Maixduino/Images/facedetection-img.jpg)
+
+![faces_recognition_2] (https://github.com/thiagofcm/Personal_Assistant_Robot_TCC/blob/d28b8e27569ad44e4f325c1ccfb675bf6a05b32c/Maixduino/Images/face-detection-two-faces.jpg)
 
 NEXT STEPS: Make the face detection model get the relative position (y coordinate) of the face with the biggest area captured by the camera. After that, its time to start writing fuctions to send the tracking data (angle and direction of tracked objects/faces) via I2C protocol from the Maixduino to the STM32 microcontroller.
+
+(26/01) Rasp-Maix Circuit:
+
+![rasp_maix_circuit] (https://github.com/thiagofcm/Personal_Assistant_Robot_TCC/blob/d28b8e27569ad44e4f325c1ccfb675bf6a05b32c/Maixduino/Images/rasp-maix-circuit.jpg)
 
 # 5. Current Robot Images:
 ![Personal_Assistant_Robot1](https://github.com/thiagofcm/Personal_Assistant_Robot_TCC/assets/22446244/e5b46cf7-b34e-46e4-ad61-13eb81d811cc)
