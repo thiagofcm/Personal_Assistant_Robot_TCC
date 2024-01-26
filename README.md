@@ -71,7 +71,7 @@ In order to achieve the general and specific objectives of the work, the constru
 
 - Object detection function now gets the relative position only of the objects required by the user. In the example below, the object required was a car, so the rectangle red and the red circle in the center of the object represents that the model understand that is the object that has to be tracked. 
 
-![image_car_object_detection] (https://github.com/thiagofcm/Personal_Assistant_Robot_TCC/blob/63ea011f313f0d9b6ededb7f4899f473672e66a3/Maixduino/Images/object-detection-car.jpg)
+![image_car_object_detection](https://github.com/thiagofcm/Personal_Assistant_Robot_TCC/blob/63ea011f313f0d9b6ededb7f4899f473672e66a3/Maixduino/Images/object-detection-car.jpg)
 
 In other hand, the image of a dog, that's not a car is sourrounded by a green rectangle without any circle in the center, representing that despite recognized, the object is not being tracked.
 
@@ -84,13 +84,13 @@ In other hand, the image of a dog, that's not a car is sourrounded by a green re
 
 ![faces_recognition](https://github.com/thiagofcm/Personal_Assistant_Robot_TCC/blob/d28b8e27569ad44e4f325c1ccfb675bf6a05b32c/Maixduino/Images/facedetection-img.jpg)
 
-![faces_recognition_2] (https://github.com/thiagofcm/Personal_Assistant_Robot_TCC/blob/63ea011f313f0d9b6ededb7f4899f473672e66a3/Maixduino/Images/face-detection-two-faces.jpg)
+![faces_recognition_2](https://github.com/thiagofcm/Personal_Assistant_Robot_TCC/blob/63ea011f313f0d9b6ededb7f4899f473672e66a3/Maixduino/Images/face-detection-two-faces.jpg)
 
 NEXT STEPS: Make the face detection model get the relative position (y coordinate) of the face with the biggest area captured by the camera. After that, its time to start writing fuctions to send the tracking data (angle and direction of tracked objects/faces) via I2C protocol from the Maixduino to the STM32 microcontroller.
 
 (26/01) Rasp-Maix Circuit:
 
-![rasp_maix_circuit] (https://github.com/thiagofcm/Personal_Assistant_Robot_TCC/blob/63ea011f313f0d9b6ededb7f4899f473672e66a3/Maixduino/Images/rasp-maix-circuit.jpg)
+![rasp_maix_circuit](https://github.com/thiagofcm/Personal_Assistant_Robot_TCC/blob/63ea011f313f0d9b6ededb7f4899f473672e66a3/Maixduino/Images/rasp-maix-circuit.jpg)
 
 # 5. Current Robot Images:
 ![Personal_Assistant_Robot1](https://github.com/thiagofcm/Personal_Assistant_Robot_TCC/assets/22446244/e5b46cf7-b34e-46e4-ad61-13eb81d811cc)
