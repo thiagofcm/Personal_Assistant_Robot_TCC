@@ -86,7 +86,14 @@ In other hand, the image of a dog, that's not a car is sourrounded by a green re
 
 ![faces_recognition_2](https://github.com/thiagofcm/Personal_Assistant_Robot_TCC/blob/63ea011f313f0d9b6ededb7f4899f473672e66a3/Maixduino/Images/face-detection-two-faces.jpg)
 
-NEXT STEPS: Make the face detection model get the relative position (y coordinate) of the face with the biggest area captured by the camera. After that, its time to start writing fuctions to send the tracking data (angle and direction of tracked objects/faces) via I2C protocol from the Maixduino to the STM32 microcontroller.
+29/01/24: A 3D Pan Tilt has been printed and added to see the servo tracking control. Updates:
+- The tilt can follow the face with the biggest area. 
+- Face detection firmware now gets the x and y relative position and send it via UART to the STM32 (UART seems to be easier to control than I2C protocol).
+- The plan is make the STM32 MCU receive data in the format (x,y,area). I am trying to use the Direct Memory Access (DMA) to receive the data in order to significantly reduce the CPU load. However, I still don't know why, but the STM32 is receveing just one byte of the whole frame data from the Maixduino. Example: If I send (23,53,5432), the STM32 is able to fill one or two positions of the buffer, like '(' and sometimes '(' and '2'. I tested this STM32 firmware trying to receive data from the Raspberry Pi and it worked, but with Maixduino did not.
+
+![tracking_faces](https://github.com/thiagofcm/Personal_Assistant_Robot_TCC/blob/5730fe4686859f6b05fadbe6154ccdc2a8b61f4a/Maixduino/Images/tracking-objects.gif)
+
+NEXT STEPS: Ensure that the STM32 receives the complete data frame and processes the information accordingly. The goal is to implement an algorithm that dynamically adjusts the PWM signal sent to the motors, ensuring the robot maintains its position consistently in front of the object or face. The distance between the robot and the object/face will be calculated based on the area of the rectangle surrounding the object/face. A threshold area will be defined to maintain an optimal distance for the robot
 
 (26/01) Rasp-Maix Circuit:
 
