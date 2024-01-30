@@ -237,32 +237,55 @@ def follow_task():
             face_percent_location_x = int(face_location_x[id_area] * 100 / 320) #x porcentage
             face_percent_location_y = int(face_location_y[id_area] * 100 / 240) #y porcentage
 
-            #storages the x porcentage in a variable
-            face_invert_px = face_percent_location_x
-            face_invert_py = face_percent_location_y
-            print('proporcao:  ')
-            print(face_invert_py)
+            print('proporcao x:  ')
+            print(face_percent_location_x)
+            print('proporcao y:  ')
+            print(face_percent_location_y)
 
             #set the limits of the porcentage value (0 - 100)
             in_min = 0
             in_max = 100
-            #set the limits of the angle value (-90 - 90)
-            out_min = -90
-            out_max = 90
 
-            #map function, or linear linearization of the inver_px value to the angle scale to get the angle of the servo:
-            face_angle_x = ((face_invert_px - in_min) * (out_max - out_min) / (in_max - in_min) + out_min)*-1
-            face_angle_y = ((face_invert_py - in_min) * (out_max - out_min) / (in_max - in_min) + out_min)*-1
-            print('angulo: ')
-            print(face_angle_y)
+            #set the limits of the screen localization to the motors (10 - 99)
+            out_max_motor = 99
+            out_min_motor = 10
+
+            #storages the x porcentage in a variable
+            coordinate_x_motor = round(((face_percent_location_x - in_min) * (out_max_motor - out_min_motor) / (in_max - in_min) + out_min_motor),1)
+            coordinate_y_motor = round(((face_percent_location_y - in_min) * (out_max_motor - out_min_motor) / (in_max - in_min) + out_min_motor),1)
+
+            #set the limits of the face area
+            in_min_face = 300
+            in_max_face = 40000
+            linear_face_area = ((largest_face_area - in_min_face) * (out_max_motor - out_min_motor) / (in_max_face - in_min_face) + out_min_motor)
+
+            print('proporcao x (motor):  ')
+            print(coordinate_x_motor)
+            print('proporcao y (motor):  ')
+            print(coordinate_y_motor)
+
+            #set the limits of the angle value (-90 - 90)
+            out_min_angle = -90
+            out_max_angle = 90
+
+            #map function, or linearization of the face_percent_location value to the angle scale to get the angle of the servo:
+            face_angle_x = ((face_percent_location_x - in_min) * (out_max_angle - out_min_angle) / (in_max - in_min) + out_min_angle)*-1
+            face_angle_y = ((face_percent_location_y - in_min) * (out_max_angle - out_min_angle) / (in_max - in_min) + out_min_angle)*-1
+
+            #print('angulo x: ')
+            #print(face_angle_x)
+            #print('angulo y: ')
+            #print(face_angle_y)
 
             #apply the x angle to the servo
             Servo(S1, int(face_angle_x))
-            coord_message_x = '(' + str(face_angle_x) +','
-            uart_stm32.write(coord_message_x)
             Servo(S2, int(face_angle_y))
-            coord_message_y =  str(face_angle_y) + ') '
-            uart_stm32.write(coord_message_y)
+
+            uart_cord_message = '(' + str(coordinate_x_motor) +',' + str(coordinate_y_motor) + ',' + str(linear_face_area) + ')'
+            uart_stm32.write(uart_cord_message)
+
+            #coord_message_y =  str(coordinate_y_motor) + ') '
+            #uart_stm32.write(coord_message_y)
 
         lcd.display(img)
 

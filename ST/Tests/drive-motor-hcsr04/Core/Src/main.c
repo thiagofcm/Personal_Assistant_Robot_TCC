@@ -21,6 +21,7 @@
 
 /* Private includes ----------------------------------------------------------*/
 /* USER CODE BEGIN Includes */
+#include <stdio.h>
 #include "motor.h"
 #include "hcsr04.h"
 
@@ -28,11 +29,11 @@
 
 /* Private typedef -----------------------------------------------------------*/
 /* USER CODE BEGIN PTD */
-
 /* USER CODE END PTD */
 
 /* Private define ------------------------------------------------------------*/
 /* USER CODE BEGIN PD */
+#define BUFFER_SIZE 8
 #define GREEN_LED GPIO_PIN_13
 #define RED_LED GPIO_PIN_14
 /* USER CODE END PD */
@@ -48,6 +49,7 @@ TIM_HandleTypeDef htim2;
 TIM_HandleTypeDef htim5;
 
 UART_HandleTypeDef huart1;
+DMA_HandleTypeDef hdma_usart1_rx;
 
 /* USER CODE BEGIN PV */
 uint32_t val_1 = 0;
@@ -56,11 +58,26 @@ uint32_t difference = 0;
 uint8_t flag_raise = 0;
 uint16_t distance;
 uint16_t flag_start=0;
+
+int countfull=0;
+int receiveBuffer[8];
+int receivedX, receivedY;
+
+struct Coordinate{
+	int x;
+	int y;
+};
+
+struct Coordinate circular_coord[BUFFER_SIZE];
+uint16_t head = 0;
+uint16_t tail = 0;
+
 /* USER CODE END PV */
 
 /* Private function prototypes -----------------------------------------------*/
 void SystemClock_Config(void);
 static void MX_GPIO_Init(void);
+static void MX_DMA_Init(void);
 static void MX_TIM2_Init(void);
 static void MX_TIM5_Init(void);
 static void MX_TIM1_Init(void);
@@ -71,7 +88,39 @@ static void MX_USART1_UART_Init(void);
 
 /* Private user code ---------------------------------------------------------*/
 /* USER CODE BEGIN 0 */
+//void HAL_UART_RxCpltCallback(UART_HandleTypeDef *huart){
+//
+//	countfull++;
+//
+//	sscanf(circular_coord, "(%d,%d)", &receivedX, &receivedY);
+//	//sscanf(coordinate, "%d", &x_coordinate);
+//	addtobuffer(receivedX, receivedY);
+//	HAL_UART_Receive_DMA(&huart1, circular_coord, sizeof(circular_coord));
+//}
 
+//void addtobuffer(int x, int y){
+//	circular_coord[head].x = x;
+//	circular_coord[head].y = y;
+//
+//	head = (head+1)% BUFFER_SIZE;
+//
+//	if (head == tail){
+//		tail = (tail + 1) % BUFFER_SIZE;
+//	}
+//}
+
+//void readbuffer(struct Coordinate* coord) {
+//    if (head != tail) {
+//        // Lê coordenadas x e y do buffer
+//        coord->x = circular_coord[tail].x;
+//        coord->y = circular_coord[tail].y;
+//
+//        tail = (tail + 1) % BUFFER_SIZE;
+//    } else {
+//        // O buffer está vazio, lidar com isso conforme necessário
+//        // Pode ser útil adicionar algum tipo de sinalizador ou lógica para tratamento de erro
+//    }
+//}
 /* USER CODE END 0 */
 
 /**
@@ -102,10 +151,12 @@ int main(void)
 
   /* Initialize all configured peripherals */
   MX_GPIO_Init();
+  MX_DMA_Init();
   MX_TIM2_Init();
   MX_TIM5_Init();
   MX_TIM1_Init();
   MX_USART1_UART_Init();
+  HAL_UART_Receive_DMA(&huart1, circular_coord, 8);
   /* USER CODE BEGIN 2 */
   HAL_TIM_PWM_Start(&htim2, TIM_CHANNEL_2);
   HAL_TIM_PWM_Start(&htim5, TIM_CHANNEL_1);
@@ -120,20 +171,24 @@ int main(void)
   while (1)
   {
 
-	  Read_HCSR04();
-	  if(distance > 15){
-		HAL_GPIO_WritePin(GPIOB, GREEN_LED, 1); //verde
-		HAL_GPIO_WritePin(GPIOB, RED_LED, 0); //vermelho
-		motor_frente();
-	  }
-	  else if(distance <= 15){
-		HAL_GPIO_WritePin(GPIOB, GREEN_LED, 0); //verde
-		HAL_GPIO_WritePin(GPIOB, RED_LED, 1); //vermelho
-		motor_desvia(distance);
-	  }
+//	  Read_HCSR04();
+//	  if(distance > 15){
+//		HAL_GPIO_WritePin(GPIOB, GREEN_LED, 1); //verde
+//		HAL_GPIO_WritePin(GPIOB, RED_LED, 0); //vermelho
+//		motor_frente();
+//	  }
+//	  else if(distance <= 15){
+//		HAL_GPIO_WritePin(GPIOB, GREEN_LED, 0); //verde
+//		HAL_GPIO_WritePin(GPIOB, RED_LED, 1); //vermelho
+//		motor_desvia(distance);
+//	  }
 
-
-	HAL_Delay(100);
+	motor_frente();
+	HAL_Delay(2000);
+	motor_right();
+	HAL_Delay(2000);
+	motor_left();
+	HAL_Delay(2000);
 
     /* USER CODE END WHILE */
 
@@ -375,6 +430,22 @@ static void MX_USART1_UART_Init(void)
   /* USER CODE BEGIN USART1_Init 2 */
 
   /* USER CODE END USART1_Init 2 */
+
+}
+
+/**
+  * Enable DMA controller clock
+  */
+static void MX_DMA_Init(void)
+{
+
+  /* DMA controller clock enable */
+  __HAL_RCC_DMA2_CLK_ENABLE();
+
+  /* DMA interrupt init */
+  /* DMA2_Stream2_IRQn interrupt configuration */
+  HAL_NVIC_SetPriority(DMA2_Stream2_IRQn, 0, 0);
+  HAL_NVIC_EnableIRQ(DMA2_Stream2_IRQn);
 
 }
 
