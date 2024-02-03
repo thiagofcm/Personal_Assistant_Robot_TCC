@@ -28,7 +28,6 @@ extern "C" {
 
 /* Includes ------------------------------------------------------------------*/
 #include "stm32f4xx_hal.h"
-#include <stdio.h>
 
 /* Private includes ----------------------------------------------------------*/
 /* USER CODE BEGIN Includes */
@@ -49,7 +48,7 @@ extern "C" {
 /* USER CODE BEGIN EM */
 //void readbuffer(struct Coordinate* coord);
 
-void addtobuffer(int x, int y);
+//double pid_control (int x, int y);
 /* USER CODE END EM */
 
 void HAL_TIM_MspPostInit(TIM_HandleTypeDef *htim);
@@ -58,7 +57,7 @@ void HAL_TIM_MspPostInit(TIM_HandleTypeDef *htim);
 void Error_Handler(void);
 
 /* USER CODE BEGIN EFP */
-
+void motor_handle(int x);
 /* USER CODE END EFP */
 
 /* Private defines -----------------------------------------------------------*/

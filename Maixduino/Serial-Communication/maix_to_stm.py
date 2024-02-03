@@ -6,9 +6,9 @@ import utime
 fm.register(23, fm.fpioa.UART1_TX, force=True)
 fm.register(22, fm.fpioa.UART1_RX, force=True)
 
-uart = UART(UART.UART1, 115200, 8, 1, 0, timeout=1000, read_buf_len=4096)
+uart = UART(UART.UART1, 115200, 8, None, 1, timeout=1000, read_buf_len=4096)
 
-uart.write(b'hello world')
+#uart.write(b'hello world')
 x = 14
 
 while True:

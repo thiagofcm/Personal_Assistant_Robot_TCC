@@ -36,6 +36,13 @@
 #define BUFFER_SIZE 8
 #define GREEN_LED GPIO_PIN_13
 #define RED_LED GPIO_PIN_14
+#define SIZE_RX_COORD 10
+
+#define kpx 0.5
+#define kix 0.6
+#define kdx 0.7
+#define delta_time 0.1 // 0.1 segundos que é 100ms
+
 /* USER CODE END PD */
 
 /* Private macro -------------------------------------------------------------*/
@@ -60,17 +67,14 @@ uint16_t distance;
 uint16_t flag_start=0;
 
 int countfull=0;
-int receiveBuffer[8];
-int receivedX, receivedY;
-
-struct Coordinate{
-	int x;
-	int y;
-};
-
-struct Coordinate circular_coord[BUFFER_SIZE];
-uint16_t head = 0;
-uint16_t tail = 0;
+uint8_t RxCoord[SIZE_RX_COORD];
+int received_x, received_y, area,status;
+double saidax;
+//double offset;
+//double sum_offsets = 0.0;
+//double P, I, D;
+//double pre_offset=0;
+//double PID;
 
 /* USER CODE END PV */
 
@@ -88,39 +92,7 @@ static void MX_USART1_UART_Init(void);
 
 /* Private user code ---------------------------------------------------------*/
 /* USER CODE BEGIN 0 */
-//void HAL_UART_RxCpltCallback(UART_HandleTypeDef *huart){
-//
-//	countfull++;
-//
-//	sscanf(circular_coord, "(%d,%d)", &receivedX, &receivedY);
-//	//sscanf(coordinate, "%d", &x_coordinate);
-//	addtobuffer(receivedX, receivedY);
-//	HAL_UART_Receive_DMA(&huart1, circular_coord, sizeof(circular_coord));
-//}
 
-//void addtobuffer(int x, int y){
-//	circular_coord[head].x = x;
-//	circular_coord[head].y = y;
-//
-//	head = (head+1)% BUFFER_SIZE;
-//
-//	if (head == tail){
-//		tail = (tail + 1) % BUFFER_SIZE;
-//	}
-//}
-
-//void readbuffer(struct Coordinate* coord) {
-//    if (head != tail) {
-//        // Lê coordenadas x e y do buffer
-//        coord->x = circular_coord[tail].x;
-//        coord->y = circular_coord[tail].y;
-//
-//        tail = (tail + 1) % BUFFER_SIZE;
-//    } else {
-//        // O buffer está vazio, lidar com isso conforme necessário
-//        // Pode ser útil adicionar algum tipo de sinalizador ou lógica para tratamento de erro
-//    }
-//}
 /* USER CODE END 0 */
 
 /**
@@ -156,13 +128,11 @@ int main(void)
   MX_TIM5_Init();
   MX_TIM1_Init();
   MX_USART1_UART_Init();
-  HAL_UART_Receive_DMA(&huart1, circular_coord, 8);
   /* USER CODE BEGIN 2 */
   HAL_TIM_PWM_Start(&htim2, TIM_CHANNEL_2);
   HAL_TIM_PWM_Start(&htim5, TIM_CHANNEL_1);
   HAL_TIM_IC_Start_IT(&htim1, TIM_CHANNEL_1);
-  //  HAL_ADC_Start(&hadc1);
-  //TIM2->CCR2=40;
+  HAL_UART_Receive_DMA(&huart1, RxCoord, SIZE_RX_COORD);
 
   /* USER CODE END 2 */
 
@@ -170,25 +140,18 @@ int main(void)
   /* USER CODE BEGIN WHILE */
   while (1)
   {
-
+	  //motor_right();
 //	  Read_HCSR04();
 //	  if(distance > 15){
 //		HAL_GPIO_WritePin(GPIOB, GREEN_LED, 1); //verde
 //		HAL_GPIO_WritePin(GPIOB, RED_LED, 0); //vermelho
-//		motor_frente();
+//		motor_stright();
 //	  }
 //	  else if(distance <= 15){
 //		HAL_GPIO_WritePin(GPIOB, GREEN_LED, 0); //verde
 //		HAL_GPIO_WritePin(GPIOB, RED_LED, 1); //vermelho
 //		motor_desvia(distance);
 //	  }
-
-	motor_frente();
-	HAL_Delay(2000);
-	motor_right();
-	HAL_Delay(2000);
-	motor_left();
-	HAL_Delay(2000);
 
     /* USER CODE END WHILE */
 
@@ -489,6 +452,32 @@ static void MX_GPIO_Init(void)
 }
 
 /* USER CODE BEGIN 4 */
+
+void HAL_UART_RxCpltCallback(UART_HandleTypeDef *huart){
+	countfull++;
+	sscanf(RxCoord, "(%d,%d,%d)", &received_x, &received_y, &area);
+	motor_handle(received_x);
+	//motor_right();
+	HAL_UART_Receive_DMA(&huart1, RxCoord, SIZE_RX_COORD);
+}
+
+void motor_handle(int x){
+	if(x < 42){
+		motor_right();
+		status = 1;
+	}
+	if (x > 46){
+		motor_left();
+		status = 2;
+	}
+	if (x >= 42 && x <= 46){
+		motor_stop();
+		status = 3;
+	}
+	if (x==0){
+		motor_stop();
+	}
+}
 
 void HAL_TIM_IC_CaptureCallback(TIM_HandleTypeDef *htim){
   	if (htim->Channel == HAL_TIM_ACTIVE_CHANNEL_1){

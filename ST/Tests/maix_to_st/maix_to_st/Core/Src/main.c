@@ -59,7 +59,7 @@ static void MX_USART1_UART_Init(void);
 /* Private user code ---------------------------------------------------------*/
 /* USER CODE BEGIN 0 */
 
-uint8_t RxData[32];
+uint8_t RxData[10];
 int counthalf = 0;
 int countfull = 0;
 int x_coordinate;
@@ -82,7 +82,7 @@ int main(void)
   /* MCU Configuration--------------------------------------------------------*/
 
   /* Reset of all peripherals, Initializes the Flash interface and the Systick. */
- HAL_Init();
+  HAL_Init();
 
   /* USER CODE BEGIN Init */
 
@@ -105,14 +105,14 @@ int main(void)
 
   /* Infinite loop */
   /* USER CODE BEGIN WHILE */
-  while (1)
+   while (1)
   {
     /* USER CODE END WHILE */
 
     /* USER CODE BEGIN 3 */
 	  //sprintf(numarray, "%d", coordinate);
 //	  HAL_UART_Transmit(&huart1, coordinate, 8, 1000);
-	  HAL_Delay(1000);
+	  //HAL_Delay(1000);
 
   }
   /* USER CODE END 3 */
@@ -122,21 +122,6 @@ int main(void)
   * @brief System Clock Configuration
   * @retval None
   */
-
-void HAL_UART_RxHalfCpltCallback(UART_HandleTypeDef *huart)
-{
-	counthalf++;
-}
-
-void HAL_UART_RxCpltCallback(UART_HandleTypeDef *huart)
-{
-	countfull++;
-	sscanf(RxData, "(%d,%d,%d)", &x_coordinate, &y_coordinate, &area);
-	HAL_UART_Receive_DMA(&huart1, RxData, 10);
-	//sscanf(RxData, "%f", &x_coordinate);
-	//HAL_UART_Receive_DMA(&huart1, RxData, 3);
-}
-
 void SystemClock_Config(void)
 {
   RCC_OscInitTypeDef RCC_OscInitStruct = {0};
@@ -247,6 +232,11 @@ static void MX_GPIO_Init(void)
 }
 
 /* USER CODE BEGIN 4 */
+void HAL_UART_RxCpltCallback(UART_HandleTypeDef *huart){
+	countfull++;
+	sscanf(RxData, "(%d,%d,%d)", &x_coordinate, &y_coordinate, &area);
+	HAL_UART_Receive_DMA(&huart1, RxData, 10);
+}
 
 /* USER CODE END 4 */
 
