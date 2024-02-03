@@ -93,7 +93,15 @@ In other hand, the image of a dog, that's not a car is sourrounded by a green re
 
 ![tracking_faces](https://github.com/thiagofcm/Personal_Assistant_Robot_TCC/blob/5730fe4686859f6b05fadbe6154ccdc2a8b61f4a/Maixduino/Images/tracking-objects.gif)
 
-NEXT STEPS: Ensure that the STM32 receives the complete data frame and processes the information accordingly. The goal is to implement an algorithm that dynamically adjusts the PWM signal sent to the motors, ensuring the robot maintains its position consistently in front of the object or face. The distance between the robot and the object/face will be calculated based on the area of the rectangle surrounding the object/face. A threshold area will be defined to maintain an optimal distance for the robot
+01/01/24: The STM32 is now receiving the complete coordinates data from Maixduino, in the format (x,y,area) and using DMA. Updates:
+- A new microphone from Logitech Webcam was added. Now, the voice recognition is more accurate and the system can listen commands in a larger distance.
+
+02/02/24: Based on the x coordinate received by the Maixduino, the STM32 is now able to adjusts the PWM signal sent to the motors and make movements like turn to the right, left, and stop ensuring the robot maintains its position consistently in front of the object or face. 
+- I still need to add a function to handle the received area data and adjust a threshold parameter to maintain an optimal distance between the object/face and the robot. However, to guarantee accurate modifications and calibrations in this implementation, it is necessary to have an autonomous system and structure already working, one that does not depend on USB supply. 
+ 
+
+
+NEXT STEPS: In the next few days, my effort will be focused on designing the circuit for this system. More specifically, I will use the software KiCad to design a PCB that meets the specific needs of this robot. This is aimed at reducing physical space, ensuring hardware functionality, providing autonomy to the robot, and giving a professional look to the system.
 
 (26/01) Rasp-Maix Circuit:
 
