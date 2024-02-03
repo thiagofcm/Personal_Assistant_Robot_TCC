@@ -99,13 +99,10 @@ In other hand, the image of a dog, that's not a car is sourrounded by a green re
 02/02/24: Based on the x coordinate received by the Maixduino, the STM32 is now able to adjusts the PWM signal sent to the motors and make movements like turn to the right, left, and stop ensuring the robot maintains its position consistently in front of the object or face. 
 - I still need to add a function to handle the received area data and adjust a threshold parameter to maintain an optimal distance between the object/face and the robot. However, to guarantee accurate modifications and calibrations in this implementation, it is necessary to have an autonomous system and structure already working, one that does not depend on USB supply. 
  
-
+![motor-tracking-objects](https://github.com/thiagofcm/Personal_Assistant_Robot_TCC/blob/c0de329dd76626097e39e07f059259708d78e37e/Maixduino/Images/motor-tracking-objects.gif)
 
 NEXT STEPS: In the next few days, my effort will be focused on designing the circuit for this system. More specifically, I will use the software KiCad to design a PCB that meets the specific needs of this robot. This is aimed at reducing physical space, ensuring hardware functionality, providing autonomy to the robot, and giving a professional look to the system.
 
-(26/01) Rasp-Maix Circuit:
-
-![rasp_maix_circuit](https://github.com/thiagofcm/Personal_Assistant_Robot_TCC/blob/63ea011f313f0d9b6ededb7f4899f473672e66a3/Maixduino/Images/rasp-maix-circuit.jpg)
 
 # 5. Current Robot Images:
 ![Personal_Assistant_Robot1](https://github.com/thiagofcm/Personal_Assistant_Robot_TCC/assets/22446244/e5b46cf7-b34e-46e4-ad61-13eb81d811cc)
