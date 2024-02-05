@@ -101,6 +101,8 @@ In other hand, the image of a dog, that's not a car is sourrounded by a green re
  
 ![motor-tracking-objects](https://github.com/thiagofcm/Personal_Assistant_Robot_TCC/blob/c0de329dd76626097e39e07f059259708d78e37e/Maixduino/Images/motor-tracking-objects.gif)
 
+04/01/24: I developed a block diagram of the system workflow (Documents/Personal_Assistant_Diagram) to facilitate software and hardware design and development.  
+
 NEXT STEPS: In the next few days, my effort will be focused on designing the circuit for this system. More specifically, I will use the software KiCad to design a PCB that meets the specific needs of this robot. This is aimed at reducing physical space, ensuring hardware functionality, providing autonomy to the robot, and giving a professional look to the system.
 
 
