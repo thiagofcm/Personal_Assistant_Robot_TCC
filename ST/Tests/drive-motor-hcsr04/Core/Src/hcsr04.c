@@ -18,6 +18,5 @@ void Read_HCSR04(void){
   	HAL_GPIO_WritePin(GPIOA, GPIO_PIN_9, 1);
   	Delay_us(10);
   	HAL_GPIO_WritePin(GPIOA, GPIO_PIN_9, 0);
-
   	__HAL_TIM_ENABLE_IT(&htim1, TIM_IT_CC1);
 }

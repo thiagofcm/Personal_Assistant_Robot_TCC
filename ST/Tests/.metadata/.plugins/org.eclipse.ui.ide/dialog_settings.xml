@@ -20,6 +20,7 @@
 		<item key="SmartImportRootWizardPage.STORE_NESTED_PROJECTS" value="true"/>
 		<item key="SmartImportRootWizardPage.STORE_CONFIGURE_NATURES" value="true"/>
 		<list key="org.eclipse.ui.internal.wizards.datatransfer.SmartImportRootWizardPage.knownSources">
+			<item value="E:\UFU\TCC\Github Rep\Personal_Assistant_Robot_TCC\ST\Tests\maix_to_st"/>
 			<item value="C:\UFU\Github-Rep\TCC-PA-Robot\ST\Tests\drive-motor-hcsr04"/>
 			<item value="C:\Users\thiag\STM32CubeIDE\workspace_1.12.1\teste_hcsr04v2"/>
 			<item value="C:\UFU\Github-Rep\TCC-PA-Robot\ST\Tests\drive-motor&amp;hcs04"/>

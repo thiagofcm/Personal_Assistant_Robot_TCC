@@ -24,6 +24,8 @@
 #include <stdio.h>
 #include "motor.h"
 #include "hcsr04.h"
+#include <string.h>
+#include "stm32f4xx_hal_tim.h"
 
 /* USER CODE END Includes */
 
@@ -64,7 +66,7 @@ uint32_t val_2 = 0;
 uint32_t difference = 0;
 uint8_t flag_raise = 0;
 uint16_t distance;
-uint16_t flag_start=0;
+uint16_t stop_flag = 0;
 
 int countfull=0;
 uint8_t RxCoord[SIZE_RX_COORD];
@@ -92,6 +94,52 @@ static void MX_USART1_UART_Init(void);
 
 /* Private user code ---------------------------------------------------------*/
 /* USER CODE BEGIN 0 */
+void HAL_TIM_IC_CaptureCallback(TIM_HandleTypeDef *htim){
+  	if (htim->Channel == HAL_TIM_ACTIVE_CHANNEL_1){
+  		if (flag_raise==0){
+  			val_1 = HAL_TIM_ReadCapturedValue(htim, TIM_CHANNEL_1);
+  			flag_raise=1;
+  			__HAL_TIM_SET_CAPTUREPOLARITY(htim, TIM_CHANNEL_1, TIM_INPUTCHANNELPOLARITY_FALLING);
+  		}
+
+  		else if (flag_raise == 1){
+  			val_2 = HAL_TIM_ReadCapturedValue(htim, TIM_CHANNEL_1);
+  			__HAL_TIM_SET_COUNTER(htim,0);
+
+  			if (val_2 > val_1){
+  				difference = val_2 - val_1;
+  			}
+  			else if (val_1 > val_2){
+  				difference = (0xffff - val_1) + val_2;
+  			}
+
+  			distance = difference/58;
+  			char message[50];
+  			sprintf(message, "Distancia: %d cm \r\n",distance);
+  			HAL_UART_Transmit(&huart1, (uint8_t*)message, strlen(message), HAL_MAX_DELAY);
+  			if(distance > 15){
+  				HAL_GPIO_WritePin(GPIOB, GPIO_PIN_13, 1); //verde
+  				HAL_GPIO_WritePin(GPIOB, GPIO_PIN_14, 0); //vermelho
+  				stop_flag = 0;
+  				//motor_stright();
+  			}
+  			else{
+  				HAL_GPIO_WritePin(GPIOB, GPIO_PIN_13, 0); //verde
+  				HAL_GPIO_WritePin(GPIOB, GPIO_PIN_14, 1); //vermelho
+  				stop_flag = 1;
+  				//motor_desvia(distance);
+  				//HAL_Delay(1500);
+  				//motor_left();
+  				//HAL_Delay(1500);
+  			}
+
+
+			flag_raise = 0;
+			__HAL_TIM_SET_CAPTUREPOLARITY(htim, TIM_CHANNEL_1, TIM_INPUTCHANNELPOLARITY_RISING);
+			__HAL_TIM_DISABLE_IT(&htim1, TIM_IT_CC1);
+  		}
+  	}
+}
 
 /* USER CODE END 0 */
 
@@ -140,18 +188,19 @@ int main(void)
   /* USER CODE BEGIN WHILE */
   while (1)
   {
-	  //motor_right();
-//	  Read_HCSR04();
+	  //motor_stright();
+	  Read_HCSR04();
+	  HAL_Delay(200);
 //	  if(distance > 15){
 //		HAL_GPIO_WritePin(GPIOB, GREEN_LED, 1); //verde
 //		HAL_GPIO_WritePin(GPIOB, RED_LED, 0); //vermelho
-//		motor_stright();
+//		//motor_stright();
 //	  }
 //	  else if(distance <= 15){
 //		HAL_GPIO_WritePin(GPIOB, GREEN_LED, 0); //verde
 //		HAL_GPIO_WritePin(GPIOB, RED_LED, 1); //vermelho
-//		motor_desvia(distance);
-//	  }
+//		//motor_desvia(distance);
+//    }
 
     /* USER CODE END WHILE */
 
@@ -218,6 +267,7 @@ static void MX_TIM1_Init(void)
 
   /* USER CODE END TIM1_Init 0 */
 
+  TIM_ClockConfigTypeDef sClockSourceConfig = {0};
   TIM_MasterConfigTypeDef sMasterConfig = {0};
   TIM_IC_InitTypeDef sConfigIC = {0};
 
@@ -231,6 +281,15 @@ static void MX_TIM1_Init(void)
   htim1.Init.ClockDivision = TIM_CLOCKDIVISION_DIV1;
   htim1.Init.RepetitionCounter = 0;
   htim1.Init.AutoReloadPreload = TIM_AUTORELOAD_PRELOAD_DISABLE;
+  if (HAL_TIM_Base_Init(&htim1) != HAL_OK)
+  {
+    Error_Handler();
+  }
+  sClockSourceConfig.ClockSource = TIM_CLOCKSOURCE_INTERNAL;
+  if (HAL_TIM_ConfigClockSource(&htim1, &sClockSourceConfig) != HAL_OK)
+  {
+    Error_Handler();
+  }
   if (HAL_TIM_IC_Init(&htim1) != HAL_OK)
   {
     Error_Handler();
@@ -424,6 +483,7 @@ static void MX_GPIO_Init(void)
 /* USER CODE END MX_GPIO_Init_1 */
 
   /* GPIO Ports Clock Enable */
+  __HAL_RCC_GPIOH_CLK_ENABLE();
   __HAL_RCC_GPIOA_CLK_ENABLE();
   __HAL_RCC_GPIOB_CLK_ENABLE();
 
@@ -456,74 +516,36 @@ static void MX_GPIO_Init(void)
 void HAL_UART_RxCpltCallback(UART_HandleTypeDef *huart){
 	countfull++;
 	sscanf(RxCoord, "(%d,%d,%d)", &received_x, &received_y, &area);
-	motor_handle(received_x);
+	motor_handle(received_x, stop_flag);
 	//motor_right();
 	HAL_UART_Receive_DMA(&huart1, RxCoord, SIZE_RX_COORD);
 }
 
-void motor_handle(int x){
-	if(x < 42){
-		motor_right();
-		status = 1;
+void motor_handle(int x, uint16_t stop_flag){
+	if (stop_flag == 0){
+		if(x < 42){
+			motor_right();
+			status = 1;
+		}
+		if (x > 46){
+			motor_left();
+			status = 2;
+		}
+		if (x >= 42 && x <= 46){
+			motor_stop();
+			status = 3;
+		}
+		if (x==0){
+			motor_stop();
+		}
 	}
-	if (x > 46){
-		motor_left();
-		status = 2;
-	}
-	if (x >= 42 && x <= 46){
+	else{
 		motor_stop();
-		status = 3;
 	}
-	if (x==0){
-		motor_stop();
-	}
+
 }
 
-void HAL_TIM_IC_CaptureCallback(TIM_HandleTypeDef *htim){
-  	if (htim->Channel == HAL_TIM_ACTIVE_CHANNEL_1){
-  		if (flag_raise==0){
-  			val_1 = HAL_TIM_ReadCapturedValue(htim, TIM_CHANNEL_1);
-  			flag_raise=1;
-  			__HAL_TIM_SET_CAPTUREPOLARITY(htim, TIM_CHANNEL_1, TIM_INPUTCHANNELPOLARITY_FALLING);
-  		}
 
-  		else if (flag_raise == 1){
-  			val_2 = HAL_TIM_ReadCapturedValue(htim, TIM_CHANNEL_1);
-  			__HAL_TIM_SET_COUNTER(htim,0);
-
-  			if (val_2 > val_1){
-  				difference = val_2 - val_1;
-  			}
-  			else if (val_1 > val_2){
-  				difference = (0xffff - val_1) + val_2;
-  			}
-
-  			distance = difference/58;
-//  			char message[50];
-//  			sprintf(message, "Distancia: %d cm \r\n",distance);
-//  			HAL_UART_Transmit(&huart1, (uint8_t*)message, strlen(message), HAL_MAX_DELAY);
-//  			if(distance > 15){
-//  				HAL_GPIO_WritePin(GPIOB, GPIO_PIN_13, 1); //verde
-//  				HAL_GPIO_WritePin(GPIOB, GPIO_PIN_14, 0); //vermelho
-//  				motor_frente();
-//  			}
-//  			else{
-//  				HAL_GPIO_WritePin(GPIOB, GPIO_PIN_13, 0); //verde
-//  				HAL_GPIO_WritePin(GPIOB, GPIO_PIN_14, 1); //vermelho
-//  				motor_re();
-//  				HAL_Delay(1500);
-//  				motor_left();
-//  				HAL_Delay(1500);
-
-  			//}
-
-
-  			flag_raise = 0;
-  			__HAL_TIM_SET_CAPTUREPOLARITY(htim, TIM_CHANNEL_1, TIM_INPUTCHANNELPOLARITY_RISING);
-  			__HAL_TIM_DISABLE_IT(&htim1, TIM_IT_CC1);
-  		}
-  	}
-  }
 /* USER CODE END 4 */
 
 /**

@@ -57,7 +57,9 @@ void HAL_TIM_MspPostInit(TIM_HandleTypeDef *htim);
 void Error_Handler(void);
 
 /* USER CODE BEGIN EFP */
-void motor_handle(int x);
+void motor_handle(int x, uint16_t stop_flag);
+
+void HAL_TIM_IC_CaptureCallback(TIM_HandleTypeDef *htim);
 /* USER CODE END EFP */
 
 /* Private defines -----------------------------------------------------------*/

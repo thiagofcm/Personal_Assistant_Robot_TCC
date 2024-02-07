@@ -8,8 +8,10 @@ import os
 import pyaudio
 from sound_effects import Sound_FX
 from serial_rasp_maix import Serial_Commands
+from led_control import Led
 
 serial = Serial_Commands()
+led = Led()
 play = Sound_FX()
 flag_init_sys = 0
 
@@ -34,8 +36,10 @@ task_flag=False
 class Voice_Assistant():
     def __init__(self):
         """Class Builder"""
+        led.green_led_off()
+        led.red_led_on()
         self.recognizer = sr.Recognizer()
-        self.microphone = sr.Microphone(device_index=1) 
+        self.microphone = sr.Microphone() 
         self.run()
 
     def start_jack_server(self):
@@ -57,17 +61,20 @@ class Voice_Assistant():
         with self.microphone as source:  
             self.recognizer.adjust_for_ambient_noise(source, 5)
             self.recognizer.dynamic_energy_threshold = 4000
+            led.green_led_on()
             print('Waiting for wakeword \"robô\"...')
             print()
+            
            
             while True:
-                audio = self.recognizer.listen(source, phrase_time_limit=3.0)
+                audio = self.recognizer.listen(source, phrase_time_limit=10.0)
         
                 try: 
                     text = self.recognizer.recognize_google(audio, language='pt-BR')
                     print(text)
                     if 'robô' in text.lower():
                         print('Wake word detected!')
+                        led.blue_led_on()
                         play.wake()
                         engine.runAndWait()
                         self.provide_info(source)
@@ -86,14 +93,16 @@ class Voice_Assistant():
 
         print('Waiting for wakeword \"robô\"...')
         print()
+        led.green_led_on()
         while True:
-            audio = self.recognizer.listen(source, phrase_time_limit=3.0)
+            audio = self.recognizer.listen(source, phrase_time_limit=10.0)
 
             try:
                 text = self.recognizer.recognize_google(audio, language='pt-BR')
                 print(text)
                 if 'robô' in text.lower():
                     print('Wake word detected!')
+                    led.blue_led_on()
                     play.wake()
                     self.provide_info(source)
                     break
@@ -117,7 +126,7 @@ class Voice_Assistant():
             try:
                 print("Listening...")
                 print()
-                audio = self.recognizer.listen(source, timeout=5.0, phrase_time_limit=3.0)
+                audio = self.recognizer.listen(source, timeout=5.0, phrase_time_limit=10.0)
                 print("Recognizing...")
                 query = self.recognizer.recognize_google(audio,language='pt-BR')
                 print(f"Usuario: {query}.")
@@ -130,6 +139,7 @@ class Voice_Assistant():
                     print()
                     engine.say(f'Ok, irei levar {obj} à voce')
                     engine.runAndWait()
+                    led.red_led_on()
                     serial.send_bring_cmd(obj)
                     task_flag = True
                     print('Task Mode Activated') #When the robot is in this mode, it just respond to 'parar' and 'obrigado' to finish the task
@@ -140,6 +150,7 @@ class Voice_Assistant():
                     print()
                     engine.say("Ok, irei te seguir")
                     engine.runAndWait()
+                    led.red_led_on()
                     serial.send_follow_cmd()
                     task_flag = True
                     print('Task Mode Activated') #When the robot is in this mode, it just responds to 'parar' and 'obrigado' to finish the task
@@ -155,6 +166,7 @@ class Voice_Assistant():
                 elif 'parar' in query:
                     serial.send_stop_cmd()
                     play.end()
+                    led.red_led_off()
                     task_flag = False
                     self.waiting_hotword_2(source)
                     
@@ -204,5 +216,6 @@ class Voice_Assistant():
                 time.sleep(1)
         except KeyboardInterrupt:
             print("Closing Program...")
+            led.green_led_off()
             self.kill_jackd_server()
 

@@ -103,6 +103,11 @@ In other hand, the image of a dog, that's not a car is sourrounded by a green re
 
 04/01/24: I developed a block diagram of the system workflow (Documents/Personal_Assistant_Diagram) to facilitate software and hardware design and development.  
 
+07/04/24: I started the schematic of the PCB on KiCad. Software Updates:
+- I made some improvements in the ST code. Now the motors stop and a buzzer is activated when an object or obstacle is within a range of 15cm of the robot.
+- I added some LEDs to the Rasp Circuit. The green LED turns on when the system is initialized and ready to receive commands. The blue LED turns on when the wake-word is detected, and the red LED represents when the robot is busy on a task.
+- These improvements are changes that I had already in mind since the beginning of the implementation, that I was just leaving for the end. However, the PCB design requires that all components and pinouts be counted.
+
 NEXT STEPS: In the next few days, my effort will be focused on designing the circuit for this system. More specifically, I will use the software KiCad to design a PCB that meets the specific needs of this robot. This is aimed at reducing physical space, ensuring hardware functionality, providing autonomy to the robot, and giving a professional look to the system.
 
 
