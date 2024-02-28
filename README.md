@@ -118,8 +118,7 @@ In other hand, the image of a dog, that's not a car is sourrounded by a green re
 
 ![3D_Structure](https://github.com/thiagofcm/Personal_Assistant_Robot_TCC/blob/cc6b8f6fa20da5be5db632fd58bd541c2c76b498/Structure/Images/3d-Modelv1.jpeg)
 
-NEXT STEPS: In the next few days, my effort will be focused on designing the circuit for this system. More specifically, I will use the software KiCad to design a PCB that meets the specific needs of this robot. This is aimed at reducing physical space, ensuring hardware functionality, providing autonomy to the robot, and giving a professional look to the system.
-
+NEXT STEPS: While the structure parts are being printed and the PCB is not ready to use, I will advance in the writting part of my thesis.
 
 # 5. Current Robot Images:
 ![Personal_Assistant_Robot1](https://github.com/thiagofcm/Personal_Assistant_Robot_TCC/assets/22446244/e5b46cf7-b34e-46e4-ad61-13eb81d811cc)
