@@ -1,5 +1,7 @@
 # Personal Assistant Robot - Bachelor's Thesis
 
+![robot-oblique](https://github.com/thiagofcm/Personal_Assistant_Robot_TCC/blob/605e8bc51dbbb05c4b6cf57f8b396b285ea71423/Structure/Images/oblique.jpg)
+
 # 1. Objective 
 The main goal of this work is the development of an assistive robotic system capable of serving as an alternative for the care of elderly individuals with motor limitations. The robot will feature hardware and software resources related to artificial intelligence and computer vision applications to navigate through a domestic environment. Through voice commands, it will perform three tasks: recognize and deliver objects, provide information, and follow individuals.
 
