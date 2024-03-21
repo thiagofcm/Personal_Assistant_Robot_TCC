@@ -180,7 +180,7 @@ int main(void)
   HAL_TIM_PWM_Start(&htim2, TIM_CHANNEL_2);
   HAL_TIM_PWM_Start(&htim5, TIM_CHANNEL_1);
   HAL_TIM_IC_Start_IT(&htim1, TIM_CHANNEL_1);
-  HAL_UART_Receive_DMA(&huart1, RxCoord, SIZE_RX_COORD);
+  HAL_UART_Receive_DMA(&huart1, RxCoord, SIZE_RX_COORD) ;
 
   /* USER CODE END 2 */
 

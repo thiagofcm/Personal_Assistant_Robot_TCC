@@ -68,7 +68,6 @@ In order to achieve the general and specific objectives of the work, the constru
 
 ![image_waiting_command](https://github.com/thiagofcm/Personal_Assistant_Robot_TCC/blob/d28b8e27569ad44e4f325c1ccfb675bf6a05b32c/Maixduino/Images/waiting-command.jpg)
 
-
 - Object detection function now gets the relative position only of the objects required by the user. In the example below, the object required was a car, so the rectangle red and the red circle in the center of the object represents that the model understand that is the object that has to be tracked. 
 
 ![image_car_object_detection](https://github.com/thiagofcm/Personal_Assistant_Robot_TCC/blob/63ea011f313f0d9b6ededb7f4899f473672e66a3/Maixduino/Images/object-detection-car.jpg)
@@ -118,7 +117,13 @@ In other hand, the image of a dog, that's not a car is sourrounded by a green re
 
 ![3D_Structure](https://github.com/thiagofcm/Personal_Assistant_Robot_TCC/blob/cc6b8f6fa20da5be5db632fd58bd541c2c76b498/Structure/Images/3d-Modelv1.jpeg)
 
-NEXT STEPS: While the structure parts are being printed and the PCB is not ready to use, I will advance in the writting part of my thesis.
+20/03/24: After nearly a month of anticipation, both the PCB and the 3D printed structure have finally arrived.
+
+- I am currently in the process of soldering the components onto the PCB, meticulously testing each one before integrating them into the entire system. 
+- The 3D structure fits flawlessly and looks quite impressive.
+- Simultaneously, progress is being made on the written aspect of the project.
+
+NEXT STEPS: Once the PCB testing is complete, the next phase involves assessing the functionality of the firmware and making any necessary adjustments to ensure it operates as intended.
 
 # 5. Current Robot Images:
 ![Personal_Assistant_Robot1](https://github.com/thiagofcm/Personal_Assistant_Robot_TCC/assets/22446244/e5b46cf7-b34e-46e4-ad61-13eb81d811cc)
