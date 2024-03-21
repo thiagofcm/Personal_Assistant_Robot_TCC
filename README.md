@@ -117,7 +117,7 @@ In other hand, the image of a dog, that's not a car is sourrounded by a green re
 
 ![PCB_routing](https://github.com/thiagofcm/Personal_Assistant_Robot_TCC/blob/cc6b8f6fa20da5be5db632fd58bd541c2c76b498/PCB/Images/routing-PAR_TCC.jpg)
 
-![3D_Structure](https://github.com/thiagofcm/Personal_Assistant_Robot_TCC/blob/cc6b8f6fa20da5be5db632fd58bd541c2c76b498/Structure/Images/3d-Modelv1.jpeg)
+![3D_Structure](https://github.com/thiagofcm/Personal_Assistant_Robot_TCC/blob/99b12a88b9243b746bac307b359f55c1c44a8e3a/Structure/Images/3d-modelv2.jpg)
 
 20/03/24: After nearly a month of anticipation, both the PCB and the 3D printed structure have finally arrived! :)
 
