@@ -117,18 +117,34 @@ In other hand, the image of a dog, that's not a car is sourrounded by a green re
 
 ![3D_Structure](https://github.com/thiagofcm/Personal_Assistant_Robot_TCC/blob/cc6b8f6fa20da5be5db632fd58bd541c2c76b498/Structure/Images/3d-Modelv1.jpeg)
 
-20/03/24: After nearly a month of anticipation, both the PCB and the 3D printed structure have finally arrived.
+20/03/24: After nearly a month of anticipation, both the PCB and the 3D printed structure have finally arrived! :)
+
+![pcb-done](https://github.com/thiagofcm/Personal_Assistant_Robot_TCC/blob/605e8bc51dbbb05c4b6cf57f8b396b285ea71423/PCB/Images/pcb-done.jpg)
 
 - I am currently in the process of soldering the components onto the PCB, meticulously testing each one before integrating them into the entire system. 
+
+![pcb-wout-rasp](https://github.com/thiagofcm/Personal_Assistant_Robot_TCC/blob/605e8bc51dbbb05c4b6cf57f8b396b285ea71423/PCB/Images/pcb-1.jpg)
+
 - The 3D structure fits flawlessly and looks quite impressive.
+
+![robot-oblique](https://github.com/thiagofcm/Personal_Assistant_Robot_TCC/blob/605e8bc51dbbb05c4b6cf57f8b396b285ea71423/Structure/Images/oblique.jpg)
+
+![top-close](https://github.com/thiagofcm/Personal_Assistant_Robot_TCC/blob/605e8bc51dbbb05c4b6cf57f8b396b285ea71423/Structure/Images/top-close.jpg)
+
+![top-open](https://github.com/thiagofcm/Personal_Assistant_Robot_TCC/blob/605e8bc51dbbb05c4b6cf57f8b396b285ea71423/Structure/Images/top-open2.jpg)
+
 - Simultaneously, progress is being made on the written aspect of the project.
 
 NEXT STEPS: Once the PCB testing is complete, the next phase involves assessing the functionality of the firmware and making any necessary adjustments to ensure it operates as intended.
 
 # 5. Current Robot Images:
-![Personal_Assistant_Robot1](https://github.com/thiagofcm/Personal_Assistant_Robot_TCC/assets/22446244/e5b46cf7-b34e-46e4-ad61-13eb81d811cc)
+![Personal_Assistant_Robot1](https://github.com/thiagofcm/Personal_Assistant_Robot_TCC/blob/605e8bc51dbbb05c4b6cf57f8b396b285ea71423/Structure/Images/front.jpg)
 
-![Personal_Assistant_Robot2](https://github.com/thiagofcm/Personal_Assistant_Robot_TCC/assets/22446244/65def04f-73bd-4eb1-a230-806fc0ca966d)
+![Personal_Assistant_Robot2](https://github.com/thiagofcm/Personal_Assistant_Robot_TCC/blob/605e8bc51dbbb05c4b6cf57f8b396b285ea71423/Structure/Images/profile2.jpg)
+
+![Personal_Assistant_Robot3](https://github.com/thiagofcm/Personal_Assistant_Robot_TCC/blob/605e8bc51dbbb05c4b6cf57f8b396b285ea71423/Structure/Images/wisey.jpg)
+
+![Personal_Assistant_Robot4](https://github.com/thiagofcm/Personal_Assistant_Robot_TCC/blob/605e8bc51dbbb05c4b6cf57f8b396b285ea71423/Structure/Images/switch-monitor.jpg)
 
 
 # 6. References
