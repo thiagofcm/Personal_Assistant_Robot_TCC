@@ -120,10 +120,6 @@ def object_recognition_task(target_object):
                     display_x_min = 0
                     display_x_max = 320
 
-                    #set the limits of the angle value (-90 - 90)
-                    out_min_angle = -90
-                    out_max_angle = 90
-
                     #set the limits of the screen localization to the motors (10 - 99)
                     out_max_motor = 99
                     out_min_motor = 10
@@ -141,8 +137,8 @@ def object_recognition_task(target_object):
                     #print(obj_x_coordinate)
 
                     uart_coord_message = '(' + str(obj_x_coordinate) + ',' + str(obj_y_coordinate) + ',' + str(linear_obj_area) + ')'
-                    uart_stm32.write(uart_cord_message)
-                    print(uart_coord_message)
+                    uart_stm32.write(uart_coord_message)
+                    #print(uart_coord_message)
 
                 else:
                     #for each object detected the program will draw a rectangle around the object with his name and porcentage of confidence
@@ -154,6 +150,7 @@ def object_recognition_task(target_object):
 
         else:
             uart_stm32.write(uart_stop_message)
+            print("stop message")
 
         a = lcd.display(img) #refresh the display
 
@@ -207,7 +204,10 @@ def follow_task():
     face_location_x   = ([0 for x in range(80)])
     face_location_y   = ([0 for x in range(80)])
 
-    Servo(S2, 45)
+    servo_angle_x = 0
+    servo_angle_y = 0
+    Servo(S1, servo_angle_x)
+    Servo(S2, servo_angle_y)
 
     task = kpu.load("/sd/facedetect.kmodel")
 
@@ -260,67 +260,48 @@ def follow_task():
                         id_area = j  #save the id of the largest object
                         #print(faces_areas[j])
 
-            #print(largest_face_area)
-
             a = img.draw_circle(face_location_x[id_area], face_location_y[id_area], 3, color=(255, 0, 0), fill=True) #draw a circle on the center of the object with largest area
-            #Calculates the percentage coordinates in relation to the image dimensions (320x240).
-            face_percent_location_x = int(face_location_x[id_area] * 100 / 320) #x porcentage
-            face_percent_location_y = int(face_location_y[id_area] * 100 / 240) #y porcentage
 
-            #print('proporcao x:  ')
-            #print(face_percent_location_x)
-            #print('proporcao y:  ')
-            #print(face_percent_location_y)
+            error_y = face_location_y[id_area] - 120 # 120 = (display length / 2) pixels
 
-            #set the limits of the porcentage value (0 - 100)
-            in_min = 0
-            in_max = 100
+            #print(error_y)
+            if error_y > 50:
+                servo_angle_y = servo_angle_y-2
+                if servo_angle_y < -90:
+                    servo_angle_y = -90
+                Servo(S2,servo_angle_y)
+            if error_y < 30:
+                servo_angle_y = servo_angle_y+2
+                if servo_angle_y > 90:
+                    servo_angle_y=90
+                Servo(S2,servo_angle_y)
+
+
+            #set the x limits of the display (0 -> 320)
+            display_min = 0
+            display_max = 320
 
             #set the limits of the screen localization to the motors (10 - 99)
             out_max_motor = 99
             out_min_motor = 10
-
-            #storages the x porcentage in a variable
-            coordinate_x_motor = int(((face_percent_location_x - in_min) * (out_max_motor - out_min_motor) / (in_max - in_min) + out_min_motor))
-            coordinate_y_motor = int(((face_percent_location_y - in_min) * (out_max_motor - out_min_motor) / (in_max - in_min) + out_min_motor))
 
             #set the limits of the face area
             in_min_face = 300
             in_max_face = 40000
             linear_face_area = int((largest_face_area - in_min_face) * (out_max_motor - out_min_motor) / (in_max_face - in_min_face) + out_min_motor)
 
-            #print('proporcao x (motor):  ')
-            #print(coordinate_x_motor)
-            #print('proporcao y (motor):  ')
-            #print(coordinate_y_motor)
+            #storages the x porcentage in a variable
+            coordinate_x_motor = int(((face_location_x[id_area] - display_min) * (out_max_motor - out_min_motor) / (display_max - display_min) + out_min_motor))
+            coordinate_y_motor = 10 #so pra teste
 
-            #set the limits of the angle value (-90 - 90)
-            out_min_angle = -90
-            out_max_angle = 90
-
-            #map function, or linearization of the face_percent_location value to the angle scale to get the angle of the servo:
-            face_angle_x = ((face_percent_location_x - in_min) * (out_max_angle - out_min_angle) / (in_max - in_min) + out_min_angle)
-            face_angle_y = ((face_percent_location_y - in_min) * (out_max_angle - out_min_angle) / (in_max - in_min) + out_min_angle)
-
-            #print('angulo x: ')
-            #print(face_angle_x)
-            #print('angulo y: ')
-            #print(face_angle_y)
-
-            #apply the x angle to the servo
-            #Servo(S1, int(face_angle_x))
-            Servo(S2, int(face_angle_y))
-
-            uart_cord_message = '(' + str(coordinate_x_motor) +',' + str(coordinate_y_motor) + ',' + str(linear_face_area) + ')'
-            uart_stm32.write(uart_cord_message)
-            print(uart_cord_message)
+            uart_coord_message = '(' + str(coordinate_x_motor) +',' + str(coordinate_y_motor) + ',' + str(linear_face_area) + ')'
+            uart_stm32.write(uart_coord_message)
+            print(uart_coord_message)
             print()
-            #coord_message_y =  str(coordinate_y_motor) + ') '
-            #uart_stm32.write(coord_message_y)
-            #lcd.display(img)
 
         else:
             uart_stm32.write(uart_stop_message)
+            print("stop message")
 
 
         lcd.display(img)
