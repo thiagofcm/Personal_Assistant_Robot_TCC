@@ -20,7 +20,7 @@ engine = pyttsx3.init()
 
 #Set your openai api key and customizing the chatgpt role
 openai.api_key = "xyz"
-messages = [{"role": "system", "content": "Your name is Jarvis and give answers in 2 lines"}]
+messages = [{"role": "system", "content": "Your name is uaizeí, a personal assistant robot created by Thiago Cuevas that give answers in 2 lines"}]
 
 #Customizing The output voice
 voices = engine.getProperty('voices')
@@ -132,18 +132,48 @@ class Voice_Assistant():
                 print(f"Usuario: {query}.")
                 print()
 
-                if 'me trazer' in query and task_flag == False:
+                if 'trazer' in query and task_flag == False:
                     sentence = query.split()
-                    obj = sentence[-1]
-                    print(f"Robô: \"Ok, irei levar {obj} à voce.\"")
-                    print()
-                    engine.say(f'Ok, irei levar {obj} à voce')
-                    engine.runAndWait()
-                    led.red_led_on()
-                    serial.send_bring_cmd(obj)
-                    task_flag = True
-                    print('Task Mode Activated') #When the robot is in this mode, it just respond to 'parar' and 'obrigado' to finish the task
-                    #serial.wait_finish_task()
+                    if 'carro' in query:
+                        obj = 'car'
+                        print("Robô: \"Ok, irei levar um carro à voce.\"")
+                        print()
+                        engine.say('Ok, irei levar um carro à você')
+                        engine.runAndWait()
+                        led.red_led_on()
+                        serial.send_bring_cmd(obj)
+                        task_flag = True
+                        print('Task Mode Activated') #When the robot is in this mode, it just respond to 'parar' and 'obrigado' to finish the task
+                        #serial.wait_finish_task()
+                    if 'garrafa' in query:
+                        obj = 'bottle'
+                        print("Robô: \"Ok, irei levar uma garrafa à você.\"")
+                        print()
+                        engine.say('Ok, irei levar uma garrafa à você')
+                        engine.runAndWait()
+                        led.red_led_on()
+                        serial.send_bring_cmd(obj)
+                        task_flag = True
+                        print('Task Mode Activated')
+                    if 'bicicleta' in query:
+                        obj = 'bicycle'
+                        print("Robô: \"Ok, irei levar uma bicicleta à você.\"")
+                        print()
+                        engine.say('Ok irei levar uma bicicleta à você')
+                        engine.runAndWait()
+                        led.red_led_on()
+                        serial.send_bring_cmd(ob)
+                        task_flag = True
+                        print('Task Mode Activated')
+                    if 'carro' not in query and 'garrafa' not in query and 'bicicleta' not in query:
+                        print("Robô: \"Desculpe, não sou capaz de reconhecer este objeto.\"")
+                        print()
+                        engine.say('Desculpe, não sou capaz de reconhecer este objeto.')
+                        engine.runAndWait()
+                        play.end()
+                        task_flag = False
+                        led.blue_led_off()
+                        self.waiting_hotword_2(source)
 
                 elif 'siga-me' in query and task_flag == False:
                     print("Robô: \"Ok, irei te seguir.\"")

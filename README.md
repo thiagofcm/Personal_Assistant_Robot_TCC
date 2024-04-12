@@ -3,10 +3,10 @@
 ![robot-oblique](https://github.com/thiagofcm/Personal_Assistant_Robot_TCC/blob/6b0b2d2e535fad894042e1c58aada04ed1e22924/Structure/Images/wisey-all.jpg)
 
 # 1. Objective 
-The main goal of this work is the development of an assistive robotic system capable of serving as an alternative for the care of elderly individuals with motor limitations. The robot will feature hardware and software resources related to artificial intelligence and computer vision applications to navigate through a domestic environment. Through voice commands, it will perform three tasks: recognize and deliver objects, provide information, and follow individuals.
+The main goal of this work is the development of an assistive robotic system capable of serving as an alternative for the care of elderly individuals with motor limitations. The robot will feature hardware and software resources related to artificial intelligence and computer vision applications to navigate through a domestic environment. Through voice commands, it will perform three tasks: recognize and deliver objects (Finder Mode), provide information and interact with users (Conversation Mode), and follow individuals (Follow Mode).
 
 # 2. Tecnical Features
-Internally, the robot operates using a modular design. It employs a micro-controller STM32F41106 to control the motors and the ultrasonic sensor, and a micro-controller Sipeed Maixduino is responsible for running the neural network, image processing, and embedded machine learning. Finally, a Raspberry Pi 3 serves as a central data management unit that coordinates both of these separate modules. The robot's structure consists of a rover track belt connected to each motor, an aluminum chassis, and an external 3D finish.
+Internally, the robot operates using a modular design. It employs a micro-controller STM32F41106 to control the motors and the ultrasonic sensor. A microcontroller Sipeed Maixduino, responsible for running the neural network, image processing, and embedded machine learning. And finally, a Raspberry Pi 3, as a central data management unit that coordinates both of these separate modules. The robot's structure consists of a rover track belt connected to each motor, an aluminum chassis, and an external 3D structure.
 
 # 3. Research Method 
 In order to achieve the general and specific objectives of the work, the construction of the proposed system was divided into six basic stages: (i) Requirements and References Study, (ii) Development of microcontroller's firmware, (iii) Software Validation and Integration, (iv) PCB Development, (v) Design and Printing of the 3D Structure, (vi) Final Tests.
@@ -17,7 +17,7 @@ In order to achieve the general and specific objectives of the work, the constru
 # 3.2 Development of Microcontroller's firmware:
 - Development of Raspberry Pi 3 firmware, involving speech recognition and serial communication software to send commands and data to other microcontrollers.
 - Development of STM32 firmware, responsible for controlling motors and the ultrasonic sensor, as well as receiving commands and data from the Raspberry Pi controller.
-- Development of Maixduino firmware responsible for object and face detection, and reception of commands and data from the Raspberry Pi controller.
+- Development of Maixduino firmware responsible for object and face detection, and reception of commands and data from the Maixduino microcontroller.
 
 # 3.3 Software Validation and Integration: 
 - Examination of sensors and microcontroller firmware, validating each software and component separately before integration
@@ -144,12 +144,13 @@ In other hand, the image of a dog, that's not a car is sourrounded by a green re
 
 The images below ilustrate the current funcionality of the robot:
 
+Follow Mode:
 ![follow-test](https://github.com/thiagofcm/Personal_Assistant_Robot_TCC/blob/b1682fc5b20dd601ce84f9977aa9d9504989ea0d/Structure/Images/folllow-mode.jpg)
 
+Finder Mode:
 ![finder-test-right](https://github.com/thiagofcm/Personal_Assistant_Robot_TCC/blob/b1682fc5b20dd601ce84f9977aa9d9504989ea0d/Structure/Images/finder-mode-right.jpg)
 
 ![finder-test-fail](https://github.com/thiagofcm/Personal_Assistant_Robot_TCC/blob/b1682fc5b20dd601ce84f9977aa9d9504989ea0d/Structure/Images/finder-mode-fail.jpg)
-
 
 # 5. Current Robot Images:
 ![Personal_Assistant_Robot1](https://github.com/thiagofcm/Personal_Assistant_Robot_TCC/blob/6b0b2d2e535fad894042e1c58aada04ed1e22924/Structure/Images/wise-hook.jpeg)
@@ -157,8 +158,6 @@ The images below ilustrate the current funcionality of the robot:
 ![Personal_Assistant_Robot2](https://github.com/thiagofcm/Personal_Assistant_Robot_TCC/blob/6b0b2d2e535fad894042e1c58aada04ed1e22924/Structure/Images/wise-button.jpeg)
 
 ![Personal_Assistant_Robot3](https://github.com/thiagofcm/Personal_Assistant_Robot_TCC/blob/6b0b2d2e535fad894042e1c58aada04ed1e22924/Structure/Images/wisey-top.jpeg)
-
-
 
 # 6. References
 The robot is a rover based on the project below:
