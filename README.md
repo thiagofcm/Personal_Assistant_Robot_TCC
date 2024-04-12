@@ -135,11 +135,20 @@ In other hand, the image of a dog, that's not a car is sourrounded by a green re
 
 12/04/24: The PCB worked very well, and tests to verify the system functionality were conducted. 
 - The system successfully interacted with the user, maintaining a fluent and cohesive conversation. 
-- The robot also showed good results in detecting and tracking users, but limitations were perceived in object capture. Unfortunately, the gripper system did not function as expected, likely due to insufficient motor torque and less effective gear system coupling. Despite this, the robot managed to detect objects and move towards them.
+- The robot also exhibited commendable performance in detecting and tracking users, although it encountered limitations in perceiving and capturing objects.
+- Given that the detection model has a restricted list of recognizable objects, with not all of them being domestic items, an adapted structure with a picture of the object was devised to enhance the recognition of specific items.
+- It was noted that the model is capable of recognizing objects at close range, possibly due to the camera's low resolution in this dimension.
+- Also, the gripper system did not function as expected, likely due to insufficient motor torque and less effective gear system coupling. Despite this, the robot managed to detect objects under specific conditions and move towards them.
 - The written part of the project has been done, and after be reviewd by the Faculty, will be available in the Documents directory.
 - A video showing all the skills of the robot is under development, and will be available on Youtube.
 
 The images below ilustrate the current funcionality of the robot:
+
+![follow-test](https://github.com/thiagofcm/Personal_Assistant_Robot_TCC/blob/b1682fc5b20dd601ce84f9977aa9d9504989ea0d/Structure/Images/folllow-mode.jpg)
+
+![finder-test-right](https://github.com/thiagofcm/Personal_Assistant_Robot_TCC/blob/b1682fc5b20dd601ce84f9977aa9d9504989ea0d/Structure/Images/finder-mode-right.jpg)
+
+![finder-test-fail](https://github.com/thiagofcm/Personal_Assistant_Robot_TCC/blob/b1682fc5b20dd601ce84f9977aa9d9504989ea0d/Structure/Images/finder-mode-fail.jpg)
 
 
 # 5. Current Robot Images:
