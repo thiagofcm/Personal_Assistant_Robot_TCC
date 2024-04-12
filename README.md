@@ -139,6 +139,12 @@ In other hand, the image of a dog, that's not a car is sourrounded by a green re
 
 NEXT STEPS: Once the PCB testing is complete, the next phase involves assessing the functionality of the firmware and making any necessary adjustments to ensure it operates as intended.
 
+12/04/24: The PCB worked very well, and tests to verify the system functionality were conducted. The system successfully interacted with the user, maintaining a fluent and cohesive conversation. The robot also showed good results in detecting and tracking users, but limitations were perceived in object capture. Unfortunately, the gripper system did not function as expected, likely due to insufficient motor torque and less effective gear system coupling. Despite this, the robot managed to detect objects and move towards them.
+
+- The written part of the project has been done, and after be reviewd by the Faculty, will be available in the Documents directory.
+
+- A video showing all the skills of the robot is under development, and will be available on Youtube.
+
 # 5. Current Robot Images:
 ![Personal_Assistant_Robot1](https://github.com/thiagofcm/Personal_Assistant_Robot_TCC/blob/605e8bc51dbbb05c4b6cf57f8b396b285ea71423/Structure/Images/front.jpg)
 

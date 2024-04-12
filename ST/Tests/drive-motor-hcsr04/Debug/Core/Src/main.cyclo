@@ -7,6 +7,6 @@
 ../Core/Src/main.c:445:13:MX_USART1_UART_Init	2
 ../Core/Src/main.c:476:13:MX_DMA_Init	1
 ../Core/Src/main.c:494:13:MX_GPIO_Init	1
-../Core/Src/main.c:541:6:HAL_UART_RxCpltCallback	1
-../Core/Src/main.c:549:6:motor_handle	7
-../Core/Src/main.c:580:6:Error_Handler	1
+../Core/Src/main.c:541:6:HAL_UART_RxCpltCallback	3
+../Core/Src/main.c:555:6:motor_handle	9
+../Core/Src/main.c:598:6:Error_Handler	1

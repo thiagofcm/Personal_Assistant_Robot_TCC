@@ -188,7 +188,7 @@ int main(void)
   /* USER CODE BEGIN WHILE */
   while (1)
   {
-//	  motor_stright();
+	  //motor_stright();
 //	  HAL_Delay(5000);
 //	  motor_stop();
 //	  HAL_Delay(5000);
@@ -541,12 +541,19 @@ static void MX_GPIO_Init(void)
 void HAL_UART_RxCpltCallback(UART_HandleTypeDef *huart){
 	countfull++;
 	sscanf(RxCoord, "(%d,%d,%d)", &received_x, &received_y, &area);
-	motor_handle(received_x, stop_flag);
+	if (received_x == 0 && area == 0){
+		motor_stop();
+	}
+	else{
+	motor_handle(received_x, area, stop_flag);
 	//motor_right();
+	}
 	HAL_UART_Receive_DMA(&huart1, RxCoord, SIZE_RX_COORD);
+
 }
 
-void motor_handle(int x, uint16_t stop_flag){
+void motor_handle(int x, int area, uint16_t stop_flag){
+
 	if (stop_flag == 0){
 		if(x < 46){
 			motor_right();
@@ -563,7 +570,18 @@ void motor_handle(int x, uint16_t stop_flag){
 		if (x==0){
 			motor_stop();
 		}
-	}
+
+		if (area < 12){
+			motor_stright();
+		}
+
+		if (area > 20){
+			motor_backwards();
+		}
+
+//		if (area >= 20 && area <= 12){
+//			motor_stop();
+		}
 	else{
 		motor_stop();
 	}
