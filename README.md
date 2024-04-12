@@ -115,13 +115,15 @@ In other hand, the image of a dog, that's not a car is sourrounded by a green re
 
 ![PCB](https://github.com/thiagofcm/Personal_Assistant_Robot_TCC/blob/cc6b8f6fa20da5be5db632fd58bd541c2c76b498/PCB/Images/Personal_Assistant_Robot_TCC.jpg)
 
-![PCB_routing](https://github.com/thiagofcm/Personal_Assistant_Robot_TCC/blob/cc6b8f6fa20da5be5db632fd58bd541c2c76b498/PCB/Images/routing-PAR_TCC.jpg)
+![PCB_routing1](https://github.com/thiagofcm/Personal_Assistant_Robot_TCC/blob/d1781523850589c5f9d656b7d66d7770522fb80b/PCB/Images/back-pcb-1-nbk.jpg)
+
+![PCB_routing2](https://github.com/thiagofcm/Personal_Assistant_Robot_TCC/blob/d1781523850589c5f9d656b7d66d7770522fb80b/PCB/Images/front-pcb-1-nobk.jpg)
 
 ![3D_Structure](https://github.com/thiagofcm/Personal_Assistant_Robot_TCC/blob/6b0b2d2e535fad894042e1c58aada04ed1e22924/Structure/Images/3d-robot2.jpg)
 
 20/03/24: After nearly a month of anticipation, both the PCB and the 3D printed structure have finally arrived! :)
 
-![pcb-done](https://github.com/thiagofcm/Personal_Assistant_Robot_TCC/blob/605e8bc51dbbb05c4b6cf57f8b396b285ea71423/PCB/Images/pcb-done.jpg)
+![pcb-done](https://github.com/thiagofcm/Personal_Assistant_Robot_TCC/blob/d1781523850589c5f9d656b7d66d7770522fb80b/PCB/Images/pcb.jpg)
 
 - I am currently in the process of soldering the components onto the PCB, meticulously testing each one before integrating them into the entire system. 
 
