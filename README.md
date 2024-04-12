@@ -1,6 +1,6 @@
 # Personal Assistant Robot - Bachelor's Thesis
 
-![robot-oblique](https://github.com/thiagofcm/Personal_Assistant_Robot_TCC/blob/605e8bc51dbbb05c4b6cf57f8b396b285ea71423/Structure/Images/oblique.jpg)
+![robot-oblique](https://github.com/thiagofcm/Personal_Assistant_Robot_TCC/blob/6b0b2d2e535fad894042e1c58aada04ed1e22924/Structure/Images/wisey-all.jpg)
 
 # 1. Objective 
 The main goal of this work is the development of an assistive robotic system capable of serving as an alternative for the care of elderly individuals with motor limitations. The robot will feature hardware and software resources related to artificial intelligence and computer vision applications to navigate through a domestic environment. Through voice commands, it will perform three tasks: recognize and deliver objects, provide information, and follow individuals.
@@ -117,7 +117,7 @@ In other hand, the image of a dog, that's not a car is sourrounded by a green re
 
 ![PCB_routing](https://github.com/thiagofcm/Personal_Assistant_Robot_TCC/blob/cc6b8f6fa20da5be5db632fd58bd541c2c76b498/PCB/Images/routing-PAR_TCC.jpg)
 
-![3D_Structure](https://github.com/thiagofcm/Personal_Assistant_Robot_TCC/blob/99b12a88b9243b746bac307b359f55c1c44a8e3a/Structure/Images/3d-modelv2.jpg)
+![3D_Structure](https://github.com/thiagofcm/Personal_Assistant_Robot_TCC/blob/6b0b2d2e535fad894042e1c58aada04ed1e22924/Structure/Images/3d-robot2.jpg)
 
 20/03/24: After nearly a month of anticipation, both the PCB and the 3D printed structure have finally arrived! :)
 
@@ -129,30 +129,26 @@ In other hand, the image of a dog, that's not a car is sourrounded by a green re
 
 - The 3D structure fits flawlessly and looks quite impressive.
 
-![robot-oblique](https://github.com/thiagofcm/Personal_Assistant_Robot_TCC/blob/605e8bc51dbbb05c4b6cf57f8b396b285ea71423/Structure/Images/oblique.jpg)
-
-![top-close](https://github.com/thiagofcm/Personal_Assistant_Robot_TCC/blob/605e8bc51dbbb05c4b6cf57f8b396b285ea71423/Structure/Images/top-close.jpg)
-
-![top-open](https://github.com/thiagofcm/Personal_Assistant_Robot_TCC/blob/605e8bc51dbbb05c4b6cf57f8b396b285ea71423/Structure/Images/top-open2.jpg)
+![robot-oblique](https://github.com/thiagofcm/Personal_Assistant_Robot_TCC/blob/6b0b2d2e535fad894042e1c58aada04ed1e22924/Structure/Images/wisey-front.jpeg)
 
 - Simultaneously, progress is being made on the written aspect of the project.
 
-NEXT STEPS: Once the PCB testing is complete, the next phase involves assessing the functionality of the firmware and making any necessary adjustments to ensure it operates as intended.
-
-12/04/24: The PCB worked very well, and tests to verify the system functionality were conducted. The system successfully interacted with the user, maintaining a fluent and cohesive conversation. The robot also showed good results in detecting and tracking users, but limitations were perceived in object capture. Unfortunately, the gripper system did not function as expected, likely due to insufficient motor torque and less effective gear system coupling. Despite this, the robot managed to detect objects and move towards them.
-
+12/04/24: The PCB worked very well, and tests to verify the system functionality were conducted. 
+- The system successfully interacted with the user, maintaining a fluent and cohesive conversation. 
+- The robot also showed good results in detecting and tracking users, but limitations were perceived in object capture. Unfortunately, the gripper system did not function as expected, likely due to insufficient motor torque and less effective gear system coupling. Despite this, the robot managed to detect objects and move towards them.
 - The written part of the project has been done, and after be reviewd by the Faculty, will be available in the Documents directory.
-
 - A video showing all the skills of the robot is under development, and will be available on Youtube.
 
+The images below ilustrate the current funcionality of the robot:
+
+
 # 5. Current Robot Images:
-![Personal_Assistant_Robot1](https://github.com/thiagofcm/Personal_Assistant_Robot_TCC/blob/605e8bc51dbbb05c4b6cf57f8b396b285ea71423/Structure/Images/front.jpg)
+![Personal_Assistant_Robot1](https://github.com/thiagofcm/Personal_Assistant_Robot_TCC/blob/6b0b2d2e535fad894042e1c58aada04ed1e22924/Structure/Images/wise-hook.jpeg)
 
-![Personal_Assistant_Robot2](https://github.com/thiagofcm/Personal_Assistant_Robot_TCC/blob/605e8bc51dbbb05c4b6cf57f8b396b285ea71423/Structure/Images/profile2.jpg)
+![Personal_Assistant_Robot2](https://github.com/thiagofcm/Personal_Assistant_Robot_TCC/blob/6b0b2d2e535fad894042e1c58aada04ed1e22924/Structure/Images/wise-button.jpeg)
 
-![Personal_Assistant_Robot3](https://github.com/thiagofcm/Personal_Assistant_Robot_TCC/blob/605e8bc51dbbb05c4b6cf57f8b396b285ea71423/Structure/Images/wisey.jpg)
+![Personal_Assistant_Robot3](https://github.com/thiagofcm/Personal_Assistant_Robot_TCC/blob/6b0b2d2e535fad894042e1c58aada04ed1e22924/Structure/Images/wisey-top.jpeg)
 
-![Personal_Assistant_Robot4](https://github.com/thiagofcm/Personal_Assistant_Robot_TCC/blob/605e8bc51dbbb05c4b6cf57f8b396b285ea71423/Structure/Images/switch-monitor.jpg)
 
 
 # 6. References
