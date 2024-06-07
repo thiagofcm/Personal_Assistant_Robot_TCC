@@ -33,6 +33,24 @@ In order to achieve the general and specific objectives of the work, the constru
 # 3.6 Final Tests and Adjustments: 
 - Final phase where rigorous testing is conducted to ensure the seamless integration of all components, functional accuracy, and optimal performance of the robot.
 
+# 4. Results
+
+# 4.1 Software Design: 
+The objective of developing the specific embedded firmwares for the system was successfully achieved. The image below shows a diagram illustrating the functionality, peripherals, and the relationship established by the programs between the MCUs.
+
+imagem
+
+# 4.2 PCB Development: 
+A Printed Circuit Board (PCB) compatible with all the hardware resources used in the system, from MCUs to sensors, motors, LEDs, etc., was designed using the KiCad software. After being designed, the board was manufactured by JLC PCB. Below are images of the board layers as well as the board already fabricated and assembled. The files for reproduction and more information about this part of the project can be found in the PCB folder.
+
+imagem
+
+# 4.3 Structue Design
+A modular structure was designed using the 3D modeling software Fusion 360 and was subsequently manufactured using 3D printing technology. All parts were designed to be compatible with the physical components of the system, as well as adapted to enhance the system's performance. The .SLT, .F3D files, and more images can be found in the Structure folder.
+
+imagem
+
+
 # 4. Recent updates and checkpoints:
 
 01/08/23: Basic Hardware and Software Tests Stage - Motor Control tests.
@@ -154,14 +172,22 @@ Finder Mode:
 
 ![finder-test-fail](https://github.com/thiagofcm/Personal_Assistant_Robot_TCC/blob/b1682fc5b20dd601ce84f9977aa9d9504989ea0d/Structure/Images/finder-mode-fail.jpg)
 
-# 5. Current Robot Images:
+# 5. Robot Images:
 ![Personal_Assistant_Robot1](https://github.com/thiagofcm/Personal_Assistant_Robot_TCC/blob/6b0b2d2e535fad894042e1c58aada04ed1e22924/Structure/Images/wise-hook.jpeg)
 
 ![Personal_Assistant_Robot2](https://github.com/thiagofcm/Personal_Assistant_Robot_TCC/blob/6b0b2d2e535fad894042e1c58aada04ed1e22924/Structure/Images/wise-button.jpeg)
 
 ![Personal_Assistant_Robot3](https://github.com/thiagofcm/Personal_Assistant_Robot_TCC/blob/6b0b2d2e535fad894042e1c58aada04ed1e22924/Structure/Images/wisey-top.jpeg)
 
-# 6. References
+In the Development Checkpoints folder, you can find the entire development process of the project, including problems, solutions, challenges, tests, failures, and successes. I found it important to document this entire process so that if anyone is interested in reproducing and improving the project, they have references.
+
+# 6. Demonstration Video:
+
+imagem
+
+A demonstration video of the robot in operation is available at the following link: https://youtu.be/cWnuLTotcqo?si=knrNkCdaKpj5jtFy
+
+# 7. References
 The robot is a rover based on the project below:
 https://github.com/SaralTayal123/Object-Finding-Rover/tree/master
 
