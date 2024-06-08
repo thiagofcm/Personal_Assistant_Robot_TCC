@@ -40,7 +40,7 @@ A Printed Circuit Board (PCB) compatible with all the hardware resources used in
 ![PCB_MOUNTED_1](https://github.com/thiagofcm/Personal_Assistant_Robot_TCC/blob/2f672d27ba32c738436c6a25cce9a761228e0c8b/PCB/Images/pcb-1.jpg)
 ![PCB_MOUNTED_2](https://github.com/thiagofcm/Personal_Assistant_Robot_TCC/blob/2f672d27ba32c738436c6a25cce9a761228e0c8b/PCB/Images/pcb-with-rasp.jpg)
 
-# 3.3 Structue Design
+# 3.3 Structure Design
 A modular structure was designed using the 3D modeling software Fusion 360 and was subsequently manufactured using 3D printing technology. All parts were designed to be compatible with the physical components of the system, as well as adapted to enhance the system's performance. The .SLT, .F3D files, and more images can be found in the Structure folder.
 
 ![3D-VIEW](https://github.com/thiagofcm/Personal_Assistant_Robot_TCC/blob/4ae8f0512d489891ea1428c4595c266894abef41/Structure/3D-Images/cool-view.jpg)
@@ -82,3 +82,6 @@ A demonstration video of the robot in operation is available at the following li
 The robot is a rover based on the project below:
 https://github.com/SaralTayal123/Object-Finding-Rover/tree/master
 
+Contact:
+Email: thiagof1503@gmail.com
+Linkedin: https://www.linkedin.com/in/thiago-cuevas/
